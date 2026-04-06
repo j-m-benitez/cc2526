@@ -1,5 +1,5 @@
 
-# Práctica 1: Despliegue de servicio ownCloud
+# Práctica 1: Despliegue de servicio
 
 # Contenidos:
 * [1. Objetivos de la práctica](#1-objetivos-de-la-práctica)
@@ -14,7 +14,7 @@
 
 ## 1. Objetivos de la práctica
 - Crear servicios interconectados usando contenedores.
-- Conocer el despliegue de servicios en contenedores usando docker/podman, docker/podman-compose y kubernetes.
+- Conocer el despliegue de servicios en contenedores usando podman, podman-compose y kubernetes.
 - **Se puede implementar con docker o podman, mi recomendación es usar podman**
 - **Utilizad únicamente el rango de puertos por encima del puerto 20 000 que se os haya asignado si estáis utilizando el servidor.**
 - Implementar distintas arquitecturas de servicios en contenedores en función de los requisitos del sistema. 
