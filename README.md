@@ -12,40 +12,41 @@
 
 
 
-## Session 1
+## Sesión 1
 
-- Introduction to the Course. 
+- Servicios IaaS. Máquinas virtuales. 
 - [Managing Azure VMs: Create, deploy and add services](./session1/README.md)
 
 
-## Session 2
+## Sesión 2
 
-- [Containers with Docker](./session2/README.md#session-2-docker)
+- Contenedores: podman
+-  [Contenedores con podman](./session2/README.md#session-2-docker)
 
 
-## Session 3
+## Sesión 3
 
-- [Containers with Singularity](./session3/README.md)
+- [Contenedores con Singularity](./session3/README.md)
 
-## Session 4 
+## Sesión 4 
 
 - [Containers orquestrators: Docker compose, Singularity compose and Kubernetes ](./session4/README.md)
 
 
-## Session 6
+## Sesión 5
 
-- [Introduction to MongoDB](./session6/README.md)
+- [Introucción a MongoDB](./session6/README.md)
 
-## Session 7
+## Sesión 6
 
-- [Introduction to FaaS](./session7/README.md)
+- [Introducción a FaaS](./session7/README.md)
 
-## Session 9
+## Sesión 9
 
-- [Introduction to HDFS and Hadoop](./session9/README.md)
+- [Introducción a HDFS y Hadoop](./session9/README.md)
 
 
-## Session 10 and 11
+## Sesiones 10 y 11
 
-- [Introduction to Spark and MLlib](./sessionX/README.md)
+- [Introducción a Spark y MLlib](./sessionX/README.md)
 
