@@ -1,5 +1,5 @@
 
-<h1>Sesion 4: Container orchestrators - Docker compose, Singularity compose and Kubernetes</h1>
+<h1>Sesión 4: Orquestación de contenedores - Docker compose, Singularity compose y Kubernetes</h1>
   
   * [Intro to container orchestrators](#Intro-to-containers-orchestrators)
   * [Docker Compose](#Docker-Compose)
@@ -1261,9 +1261,9 @@ webserver-774f96d4d9-vzgfd        1/1     Running   0              46m
 
 If you remember the description of the Kubernetes Arquitecture, the Controller Manager in the Control Plane is continuously monitoring the Kubernetes cluster and realized that the cluster's desired state (3 replicas of the nginx server) was not the same as the current state (2 replicas), requesting a corrective action to be taken by the API Server. The API Server then forwarded the corresponding request to the Scheduler for a new worker node to match the desired state again. 
 
-### More tutorials 
+### Más tutoriales 
   
-After completing this first tutorial, you can proceed with the [minikube HandBook tutorials](https://minikube.sigs.k8s.io/docs/handbook/) and the [contributed end-to-end tutorials](https://minikube.sigs.k8s.io/docs/tutorials/)
+Después de comlpetar este tutorial, puedes continuar con [minikube HandBook tutorials](https://minikube.sigs.k8s.io/docs/handbook/) y  [contributed end-to-end tutorials](https://minikube.sigs.k8s.io/docs/tutorials/)
   
 
 
