@@ -17,9 +17,9 @@ The general idea behind container orchestrators is that you have “managers” 
 
 In this lesson we briefly describe a few options and point to useful resources on using these tools to allow you to explore them yourself.
 
-**Docker Compose**
+**Docker (Podman) Compose**
 
-Docker Compose provides a way of constructing a unified workflow (or service) made up of multiple individual Docker containers. In addition to the individual Dockerfiles for each container, you provide a higher-level configuration file which describes the different containers and how they link together along with shared storage definitions between the containers. Once this high-level configuration has been defined, you can use single commands to start and stop the orchestrated set of containers.
+Docker (Podman) Compose provides a way of constructing a unified workflow (or service) made up of multiple individual Docker containers. In addition to the individual Dockerfiles for each container, you provide a higher-level configuration file which describes the different containers and how they link together along with shared storage definitions between the containers. Once this high-level configuration has been defined, you can use single commands to start and stop the orchestrated set of containers.
 
 **Kubernetes**
 
@@ -37,7 +37,7 @@ Let's go into more detail for some of the most popular container orchestration t
 
 # Docker Compose
 
-Docker Compose is a Docker tool used to define and run multi-container applications. With Compose, you use a YAML file to configure your application’s services and create all the app’s services from that configuration.
+Docker (Pomdan) Compose is a Docker (Podman) tool used to define and run multi-container applications. With Compose, you use a YAML file to configure your application’s services and create all the app’s services from that configuration.
 
 Think of Docker Compose as an automated multi-container workflow. Compose is an excellent tool for development, testing, CI workflows, and staging environments. According to the Docker documentation, the most popular features of Docker Compose are:
 
@@ -977,7 +977,7 @@ minikube start --driver=podman --container-runtime=containerd
 
 ```
 $ minikube start
-😄  minikube v1.29.0 en Darwin 12.6
+😄  minikube v1.38.1 en Fedora 43
 ✨  Controlador docker seleccionado automáticamente. Otras opciones: virtualbox, ssh
 📌  Using Docker Desktop driver with root privileges
 👍  Starting control plane node minikube in cluster minikube
@@ -1039,7 +1039,7 @@ These methods are applicable to all Kubernetes clusters.
 ### Run applications with Pods
 
 You can run a Pod in two ways: 
-- Creating a yaml file with the definition of the pod. This is a sample .yaml file named nginx.yaml to define an nginx service: 
+- Creating a yaml file with the definition of the pod. This is a sample .yaml file named `nginx.yaml` to define an nginx service: 
 
 ```
 apiVersion: v1
