@@ -133,6 +133,20 @@ To un-deploy the services:
 docker compose down
 ```
 
+When using podman, the corresponding commands to deploy the services re:
+```
+podman-compose up -d
+```
+
+And to un-deploy them:
+```
+podman-compose down
+``
+
+
+
+
+
 Docker Compose commands
 
 Now that we know how to create a docker-compose file, let’s go over the most common Docker Compose commands that we can use with our files. Keep in mind that we will only be discussing the most frequently-used commands.
