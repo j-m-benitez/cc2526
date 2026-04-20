@@ -26,12 +26,12 @@ Tabla de contenido:
 
 # Usando MongoDB
 
-MongoDB es una base de datos de código abierto desarrollada por MongoDB, Inc. Se trata de una BD No-SQL orientada al desarrollo en la nube. 
+[MongoDB](https://www.mongodb.com) es una base de datos de código abierto [En Github](https://github.com/mongodb) desarrollada por MongoDB, Inc. Se trata de una BD No-SQL orientada al desarrollo en la nube. 
 
-MongoDB almacena datos en documentos similares a JSON que pueden variar en estructura. La información relacionada se almacena junta para un acceso rápido a la consulta a través del lenguaje de consulta MongoDB. MongoDB utiliza esquemas dinámicos, lo que significa que puede crear registros **sin definir primero la estructura**, como los campos o los tipos de sus valores. Puede cambiar la estructura de los registros (a los que llamamos documentos) simplemente añadiendo nuevos campos o borrando los existentes. Este modelo de datos permite representar relaciones jerárquicas, almacenar matrices y otras estructuras más complejas fácilmente. No es necesario que los documentos de una colección tengan un conjunto idéntico de campos y es frecuente la desnormalización de los datos. MongoDB también fue diseñado con alta disponibilidad y escalabilidad en mente, e incluye replicación lista para usar y auto-sharding.
+MongoDB almacena datos en documentos similares a JSON que pueden variar en estructura. La información relacionada se almacena junta para un acceso rápido a la consulta a través del lenguaje de consulta MongoDB. MongoDB utiliza esquemas dinámicos, lo que significa que puede crear registros **sin que se haya definido una estructura previamente**, como los campos o los tipos de sus valores. Además, la estructura de un conjunto de datos no tiene por qué ser tan rígida como en el modelo relacional. Puede cambiar la estructura de los registros (a los que llamamos documentos) simplemente añadiendo nuevos campos o borrando los existentes. Este modelo de datos permite representar relaciones jerárquicas, almacenar matrices y otras estructuras más complejas fácilmente. No es necesario que los documentos de una colección tengan un conjunto idéntico de campos y es frecuente la desnormalización de los datos. MongoDB también fue diseñado con alta disponibilidad y escalabilidad en mente, e incluye replicación lista para usar y auto-sharding.
 
 
-**MongoDB principales características:**
+**Principales características de MongoDB:**
 
 * Almacenamiento orientado a documentos - Los datos se almacenan en forma de documentos de estilo JSON.
 * Índice sobre cualquier atributo
@@ -39,11 +39,11 @@ MongoDB almacena datos en documentos similares a JSON que pueden variar en estru
 * Auto-sharding
 * Consultas ricas
 
-**Usando Mongo:**
+**Usando MongoDB:**
 
 * Big Data
 * Gestión y entrega de contenidos
-* Infraestructura Móvil y Social
+* Infraestructura móvil y social
 * Gestión de datos de usuario
 * Hub de datos
 * Operaciones CRUD (Create, Read, Update, Delete)
@@ -116,7 +116,7 @@ db.users.update(
 
 MongoDB almacena registros de datos como documentos BSON. 
 
-BSON es una representación binaria de documentos JSON, contiene más tipos de datos que JSON.
+BSON es una representación binaria de documentos JSON. Contiene más tipos de datos que JSON.
 
 Los documentos MongoDB se componen de pares de campo y valor y tienen la siguiente estructura:
 
@@ -200,7 +200,7 @@ Los documentos permiten documentos incrustados documentos incrustados documentos
 ## Conectando a mongodb
 
 Vamos a desplegar un servicio de MongoDB utilizando Docker o Docker Compose siguiendo las instrucciones de la web: https://www.mongodb.com/compatibility/docker. 
-Para ello, en primer lugar desplegamos un servidor MongoDB en el servidor y exponemos el puerto 25144 (**cambiarlo por uno de los puertos que se os haya asignado**) por si queremos conectar MongoDB con otra aplicación: 
+Para ello, en primer lugar desplegamos un servidor MongoDB en el servidor y exponemos el puerto 25144 (**cambiarlo por uno de los puertos que se os haya asignado**): 
 
 ### **docker-compose.yml**
 ```yaml
@@ -609,7 +609,9 @@ db.MyFirstCollection.deleteMany({'country':'United States'})
 
 ## Importar datos externos
 
-Descarga este [conjunto de datos](./sacramento_crime.csv) (7585 rows and 794 KB)
+Para realizar distintos ejercicios, probamos con un conjunto de datos público. Se llama `sacramento_crime`. A continuación se indica la ubicación y cómo descargarlo localmente, pero para las prácticas en el servidor no es necesario realizarlo. Ya está disponible en `/home/ccsa/sacramento_crime.csv`.
+
+Para usarlo en tu ordenador debes desargarlo [conjunto de datos](./sacramento_crime.csv) (7585 rows and 794 KB)
 
 Puedes hacerlo con ``wget``:
 
@@ -627,7 +629,7 @@ Copiar el fichero al contenedor:
 docker cp sacramento_crime.csv mongodb-container:/sacramento_crime.csv
 ```
 
-Entrar al ```mongosh``` del contenedor:
+Ejecuta ```mongosh``` del contenedor:
 ```
 docker exec -it mongodb-container mongosh -u admin -p secret
 ```
