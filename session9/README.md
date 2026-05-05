@@ -81,7 +81,7 @@ El conjutno se puede ejecutar con (podman):
 podman-compose up -d
 ```
 
-En el caso de usar docker el mandato sería `podman compose up -d`.
+En el caso de usar docker el mandato sería `docker compose up -d`.
 
 A continuación, puedes comprobar si todo funciona correctamente accediendo con un navegador web a las siguientes direcciones URL:
 
