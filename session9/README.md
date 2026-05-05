@@ -149,7 +149,7 @@ Cada usuario debería tener su carpeta propia en ``/user/``. Por ejemplo, el con
 
 ¡Atención! El espacio de almacenamiento de HDFS es diferente del espacio de almacenamiento local del usuario en docker.ugr.es
 ```
-/user/CCSA2/mcc50600265/  NOT EQUAL /home/mcc506000265/
+/user/CCSA/mcc50600265/  NOT EQUAL /home/mcc506000265/
 ```
 
 
@@ -174,7 +174,7 @@ Los mandatos son (versión simplificada):
 -put        Put a file from local to HDFS
 ```
 
-Listar el contenido de na carpeta:
+Listar el contenido de una carpeta:
 
 ```
 hdfs dfs -ls /user/CCSA2425/mcc50600265
