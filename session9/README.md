@@ -6,12 +6,11 @@ Concontribuciones de Carlos Cano <carloscano@ugr.es>
 
 Tabla de contenido:
 
-* [Introduction to Hadoop](#introduction-to-hadoop)
+* [Introducción a Hadoop](#introduction-to-hadoop)
 * [Setting up Hadoop and connecting](#setting-up-hadoop-and-connecting)
    * [Setting up a hadoop test install locally or on our current server with docker](#setting-up-a-hadoop-test-install-locally-or-on-our-current-server-with-docker)
 * [Working with HDFS](#working-with-hdfs)
    * [Connecting to the HDFS of your cluster](#connecting-to-the-hdfs-of-your-cluster)
-      * [Connecting to Hadoop Cluster UGR (NOT READY YET, CANNOT BE USED CURRENTLY)](#connecting-to-hadoop-cluster-ugr-not-ready-yet-cannot-be-used-currently)
       * [Connecting to the local emulation](#connecting-to-the-local-emulation)
    * [HDFS basics](#hdfs-basics)
    * [HDFS storage space](#hdfs-storage-space)
