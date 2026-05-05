@@ -1,4 +1,4 @@
-# Session 9: Hadoop and HDFS
+# Session 9: Hadoop y HDFS
 
 Textos origianles de Manuel Parra <manuelparra@decsai.ugr.es> y José Manuel Benítez <jm.benitez@decsai.ugr.es>
 
