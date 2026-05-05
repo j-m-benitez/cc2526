@@ -1,4 +1,4 @@
-# Practice 2
+# Práctica 2
 
 Implementing face recognition using Functions-as-a-Service
 
