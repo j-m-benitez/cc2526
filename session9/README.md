@@ -2,7 +2,7 @@
 
 Textos origianles de Manuel Parra <manuelparra@decsai.ugr.es> y José Manuel Benítez <jm.benitez@decsai.ugr.es>
 
-Concontribuciones de Carlos Cano <carloscano@ugr.es>
+Con contribuciones de Carlos Cano <carloscano@ugr.es>
 
 Tabla de contenido:
 
@@ -36,7 +36,6 @@ El ecosistema de Hadoop se compone de varios módulos clave. Los dos principales
 Más allá de sus componentes básicos, Hadoop incluye un amplio ecosistema de herramientas y marcos de trabajo, como Hive (para consultas de tipo SQL), Pig (para la transformación de datos) y YARN (para la gestión de recursos). Gracias a su capacidad para procesar grandes volúmenes de datos estructurados y no estructurados, Hadoop se ha convertido en una tecnología fundamental en muchos sectores.
 
 ## Configuración de hadoop en local con contenedores
-
 
 Puedes configurar una instalación de prueba de Hadoop localmente o en el servidor que hemos estado utilizando hasta ahora, con el siguiente archivo `docker-compose.yaml`.
 
