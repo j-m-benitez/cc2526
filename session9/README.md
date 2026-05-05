@@ -1,4 +1,4 @@
-# Session 9: Hadoop y HDFS
+# Session 9: Hadoop: HDFS y MapReduce
 
 Textos origianles de Manuel Parra <manuelparra@decsai.ugr.es> y José Manuel Benítez <jm.benitez@decsai.ugr.es>
 
