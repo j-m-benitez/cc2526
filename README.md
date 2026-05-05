@@ -44,7 +44,7 @@
 - [Introducción a HDFS y Hadoop](./session9/README.md)
 
 
-## Sesiones 8
+## Sesión 8
 
 - [Introducción a Spark y MLlib](./sessionX/README.md)
 
