@@ -1,14 +1,13 @@
 # Session 9: Hadoop and HDFS
 
-Original texts by Manuel Parra: manuelparra@decsai.ugr.es and José Manuel Benítez: j.m.benitez@decsai.ugr.es
+Textos origianles de Manuel Parra <manuelparra@decsai.ugr.es> y José Manuel Benítez <jm.benitez@decsai.ugr.es>
 
-With contributions by Carlos Cano: carloscano@ugr.es
+Concontribuciones de Carlos Cano <carloscano@ugr.es>
 
-Content:
+Tabla de contenido:
 
 * [Introduction to Hadoop](#introduction-to-hadoop)
 * [Setting up Hadoop and connecting](#setting-up-hadoop-and-connecting)
-   * [How to connect to hadoop.ugr.es (NOT READY YET, CANNOT BE USED CURRENTLY)](#how-to-connect-to-hadoopugres-not-ready-yet-cannot-be-used-currently)
    * [Setting up a hadoop test install locally or on our current server with docker](#setting-up-a-hadoop-test-install-locally-or-on-our-current-server-with-docker)
 * [Working with HDFS](#working-with-hdfs)
    * [Connecting to the HDFS of your cluster](#connecting-to-the-hdfs-of-your-cluster)
@@ -33,38 +32,16 @@ Content:
 
 # Introduction to Hadoop
 
-Hadoop is an open-source framework developed by the Apache Software Foundation that enables the distributed processing of large datasets across clusters of computers using simple programming models. It is designed to scale up from a single server to thousands of machines, each offering local computation and storage. At its core, Hadoop is built to handle vast amounts of data in a fault-tolerant, reliable, and cost-effective way, making it particularly well-suited for big data applications.
+Hadoop es un marco trabajo de código abierto desarrollado por la Apache Software Foundation que permite el procesamiento distribuido de grandes conjuntos de datos a través de clústeres de ordenadores utilizando modelos de programación sencillos. Está diseñado para ampliarse desde un único servidor hasta miles de máquinas, cada una de las cuales ofrece capacidad de cálculo y almacenamiento local. En esencia, Hadoop está concebido para gestionar enormes cantidades de datos de una manera tolerante a fallos, fiable y rentable, lo que lo hace especialmente adecuado para aplicaciones de big data.
 
-The Hadoop ecosystem is composed of several key modules. The two primary ones are the **Hadoop Distributed File System (HDFS)**, which provides high-throughput access to data, and **MapReduce**, a programming model for parallel data processing. HDFS stores data in large blocks spread across multiple nodes, ensuring redundancy and availability. MapReduce, on the other hand, processes data in parallel by dividing tasks into "map" and "reduce" functions.
+El ecosistema de Hadoop se compone de varios módulos clave. Los dos principales son el **Sistema de Archivos Distribuidos de Hadoop (HDFS)**, que proporciona acceso de alto rendimiento a los datos, y **MapReduce**, un modelo de programación para el procesamiento paralelo de datos. HDFS almacena los datos en grandes bloques repartidos por múltiples nodos, lo que garantiza la redundancia y la disponibilidad. MapReduce, por su parte, procesa los datos en paralelo dividiendo las tareas en funciones de «map» y «reduce».
 
-Beyond its core components, Hadoop includes a rich ecosystem of tools and frameworks, such as Hive (for SQL-like querying), Pig (for data transformation), and YARN (for resource management). With its ability to process massive volumes of structured and unstructured data, Hadoop has become a foundational technology in many industries.
+Más allá de sus componentes básicos, Hadoop incluye un amplio ecosistema de herramientas y marcos de trabajo, como Hive (para consultas de tipo SQL), Pig (para la transformación de datos) y YARN (para la gestión de recursos). Gracias a su capacidad para procesar grandes volúmenes de datos estructurados y no estructurados, Hadoop se ha convertido en una tecnología fundamental en muchos sectores.
 
-# Setting up Hadoop and connecting
+## Configuración de hadoop en local con contenedores
 
-## How to connect to hadoop.ugr.es (NOT READY YET, CANNOT BE USED CURRENTLY)
 
-Hadoop.ugr.es is a computing infrastructure or cluster with 15 nodes and a header node containing the data processing platforms Hadoop and Spark and their libraries for Data Mining and Machine Learning (Mahout and MLLib). It also has HDFS installed for working with distributed data. To connect to it you can follow these steps:
-
-From linux/MacOs machines: 
-
-```
-ssh <your account>@hadoop.ugr.es
-```
-From Windows machine:
-
-```Use Putty/SSH ``` 
-
-Download link: https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
-
-- Host: ``hadoop.ugr.es``
-- Port: ``22``
-- Click "Open" -> Write your login credentials and password.
-
-## Setting up a hadoop test install locally or on our current server with docker
-
-CURRENTLY THIS IS THE ONLY WAY TO RUN IT.
-
-You can set up a test install of Hadoop locally or on the server we have been using so far, with the following `docker-compose.yaml`.
+Puedes configurar una instalación de prueba de Hadoop localmente o en el servidor que hemos estado utilizando hasta ahora, con el siguiente archivo `docker-compose.yaml`.
 
 ```
 services:
@@ -97,80 +74,64 @@ volumes:
   datanode:  
 ```
 
-If you are working on our server, you'll have to edit the `ports` sections to map the ports 9870 and 9864 to ports you have been assigned. 
+Has de editar la sección `ports` para cambiar los puertos 9870 y 9864 por otros del rango que se te ha asignado.
 
-As a reminder, you can then start everything with
+El conjutno se puede ejecutar con (podman):
+
 ```bash
-docker compose up -d
+podman-compose up -d
 ```
 
-You can then check if things are running correctly by connecting with a web browser to the following URLs:
+En el caso de usar docker el mandato sería `podman compose up -d`.
+
+A continuación, puedes comprobar si todo funciona correctamente accediendo con un navegador web a las siguientes direcciones URL:
 
 - **HDFS NameNode UI**: [http://localhost:9870](http://localhost:9870)
 - **DataNode UI**: [http://localhost:9864](http://localhost:9864)
 
 
 
-# Working with HDFS
+# Trabajando con HDFS
 
 
-The Hadoop Distributed File System (HDFS) is a distributed file system designed to run on commodity hardware. It has many similarities with existing distributed file systems. However, the differences from other distributed file systems are significant. HDFS is highly fault-tolerant and is designed to be deployed on low-cost hardware. HDFS provides high throughput access to application data and is suitable for applications that have large data sets. HDFS relaxes a few POSIX requirements to enable streaming access to file system data. HDFS was originally built as infrastructure for the Apache Nutch web search engine project. HDFS is now an Apache Hadoop subproject. The project URL is http://hadoop.apache.org/. This material has been composed from the HDFS reference manual: https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/ . 
+El Sistema de Archivos Distribuido de Hadoop (HDFS) es un sistema de archivos distribuido diseñado para ejecutarse en hardware estándar. Presenta muchas similitudes con los sistemas de archivos distribuidos existentes. Sin embargo, las diferencias con respecto a otros sistemas de archivos distribuidos son significativas. HDFS es altamente tolerante a fallos y está diseñado para implementarse en hardware de bajo coste. HDFS proporciona un acceso de alto rendimiento a los datos de las aplicaciones y es adecuado para aplicaciones que tienen grandes conjuntos de datos. HDFS relaja algunos requisitos POSIX para permitir el acceso en streaming a los datos del sistema de archivos. HDFS se creó originalmente como infraestructura para el proyecto del motor de búsqueda web Apache Nutch. HDFS es ahora un subproyecto de Apache Hadoop. La URL del proyecto es http://hadoop.apache.org/. Este material se ha elaborado a partir del manual de referencia de HDFS: https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/ . 
 
 ![HDFS](http://www.glennklockwood.com/data-intensive/hadoop/hdfs-magic.png)
 
-HDFS has a master/slave architecture. An HDFS cluster consists of a single NameNode, a master server that manages the file system namespace and regulates access to files by clients. In addition, there are a number of DataNodes, usually one per node in the cluster, which manage storage attached to the nodes that they run on. HDFS exposes a file system namespace and allows user data to be stored in files. Internally, a file is split into one or more blocks and these blocks are stored in a set of DataNodes. The NameNode executes file system namespace operations like opening, closing, and renaming files and directories. It also determines the mapping of blocks to DataNodes. The DataNodes are responsible for serving read and write requests from the file system’s clients. The DataNodes also perform block creation, deletion, and replication upon instruction from the NameNode.
+HDFS tiene una arquitectura maestro/esclavo. Un clúster HDFS consta de un único NameNode, un servidor maestro que gestiona el espacio de nombres del sistema de archivos y regula el acceso a los archivos por parte de los clientes. Además, hay varios DataNodes, normalmente uno por cada nodo del clúster, que gestionan el almacenamiento asociado a los nodos en los que se ejecutan. HDFS expone un espacio de nombres del sistema de archivos y permite almacenar los datos de los usuarios en archivos. Internamente, un archivo se divide en uno o más bloques y estos bloques se almacenan en un conjunto de DataNodes. El NameNode ejecuta operaciones del espacio de nombres del sistema de archivos, como abrir, cerrar y renombrar archivos y directorios. También determina la asignación de bloques a los DataNodes. Los DataNodes se encargan de atender las solicitudes de lectura y escritura de los clientes del sistema de archivos. Los DataNodes también realizan la creación, eliminación y replicación de bloques siguiendo las instrucciones del NameNode.
 
 
 ![HDFS Arch](https://hadoop.apache.org/docs/r1.2.1/images/hdfsarchitecture.gif)
 
-**Data Replication**
+**Replicación de datos**
 
-HDFS is designed to reliably store very large files across machines in a large cluster. It stores each file as a sequence of blocks; all blocks in a file except the last block are the same size. The blocks of a file are replicated for fault tolerance. The block size and replication factor are configurable per file. An application can specify the number of replicas of a file. The replication factor can be specified at file creation time and can be changed later. Files in HDFS are write-once and have strictly one writer at any time.
-
+HDFS está diseñado para almacenar de forma fiable archivos de gran tamaño repartidos entre los equipos de un clúster de gran tamaño. Almacena cada archivo como una secuencia de bloques; todos los bloques de un archivo, excepto el último, tienen el mismo tamaño. Los bloques de un archivo se replican para garantizar la tolerancia a fallos. El tamaño de los bloques y el factor de replicación se pueden configurar para cada archivo. Una aplicación puede especificar el número de réplicas de un archivo. El factor de replicación se puede especificar en el momento de crear el archivo y se puede modificar posteriormente. Los archivos en HDFS son de escritura única y solo pueden tener un escritor en cada momento.
 
 ![DataNodes](https://hadoop.apache.org/docs/r1.2.1/images/hdfsdatanodes.gif)
 
 
-## Connecting to the HDFS of your cluster
+## Conexión al cluster HDFS
 
-### Connecting to Hadoop Cluster UGR (NOT READY YET, CANNOT BE USED CURRENTLY)
+### Conexión al despliegue local
 
-Log in hadoop ugr server with your credentials:
-
-```
-ssh ccsa<DNI>@hadoop...
-```
-
-or in ulises server with your credentials: 
-```
-
-ssh xxusername@ulises...
-```
-you will also need a password from your teacher. 
-
-### Connecting to the local emulation
-
-CURRENTLY THIS IS THE ONLY WAY TO RUN IT.
-
-Connect to a shell in your docker container with the following command.
+Desde una shell te conectas al contenedor lanzado con:
 
 ```bash
-docker exec -it namenode bash
+podman exec -it namenode bash
 ```
 
-Now we'll need to create a folder structure as follows:
+Ahora podemos crear una estructura de archivos:
 
 ```
 hdfs dfs -mkdir /user
-hdfs dfs -mkdir /user/CCSA2425/
-hdfs dfs -mkdir /user/CCSA2425/spark
-hdfs dfs -chown spark:spark /user/CCSA2425/spark
+hdfs dfs -mkdir /user/CCSA/
+hdfs dfs -chown spark:spark /user/CCSA
 ```
 
 
-## HDFS basics
+## Mandatos básicos
 
-The management of the files in HDFS works in a different way of the files of the local system. The file system is stored in a special space for HDFS. The directory structure of HDFS is as follows:
+La gestión de los archivos en HDFS funciona de forma diferente a la de los archivos del sistema local. El sistema de archivos se almacena en un espacio especial destinado a HDFS. La estructura de directorios de HDFS es la siguiente:
 
 ```
 /tmp     Temp storage
@@ -179,32 +140,27 @@ The management of the files in HDFS works in a different way of the files of the
 /var     Logs storage
 ```
 
-## HDFS storage space
+## Espacio de almacenamiento HDFS
 
-Each user has in HDFS a folder in ``/user/`` with the username, for example for the user with login mcc50600265 in HDFS have:
-
-```
-/user/CCSA2425/mcc50600265/
-```
-
-Attention! The HDFS storage space is different from the user's local storage space in hadoop.ugr.es
+Cada usuario debería tener su carpeta propia en ``/user/``. Por ejemplo, el con nombre mcc50600265 en HDFS debe tener:
 
 ```
-/user/CCSA2425/mcc50600265/  NOT EQUAL /home/mcc506000265/
+/user/CCSA/mcc50600265/
 ```
 
-For ulises, the HDFS folder is located in: 
+¡Atención! El espacio de almacenamiento de HDFS es diferente del espacio de almacenamiento local del usuario en docker.ugr.es
 ```
-/user/xxyour-username
-```
-
-## Usage HDFS
-
-```
-hdfs dfs <options>
+/user/CCSA2/mcc50600265/  NOT EQUAL /home/mcc506000265/
 ```
 
-Options are (simplified):
+
+## Uso de  HDFS
+
+```
+hdfs dfs <commands>
+```
+
+Los mandatos son (versión simplificada):
 
 ```
 -ls         List of files 
@@ -219,61 +175,61 @@ Options are (simplified):
 -put        Put a file from local to HDFS
 ```
 
-List the content of a HDFS folder:
+Listar el contenido de na carpeta:
 
 ```
 hdfs dfs -ls /user/CCSA2425/mcc50600265
 ```
 
-Create a test file:
+Crear un fichero:
 
 ```
 echo "HOLA HDFS" > fichero.txt
 ```
 
-Move the local file ``fichero.txt`` to HDFS:
+Copiar un ``fichero.txt`` del esapcio local a HDFS:
 
 ```
 hdfs dfs -put fichero.txt /user/your-username/.
 ```
 
-List again your folder:
+Comprobamos:
 
 ```
 hdfs dfs -ls /user/your-username
 ```
 
-Create a folder `test`:
+Crear una carpeta de prueba:
 
 ```
 hdfs dfs -mkdir /user/your-username/test
 ```
 
-Move ``fichero.txt`` to test folder:
+Mover ``fichero.txt`` a la carpeta de prueba:
 
 ```
 hdfs dfs -mv /user/your-username/fichero.txt /user/your-username/test/.
 ```
 
-Show the content:
+Mostrar el contenido:
 
 ```
 hdfs dfs -cat /user/your-username/test/fichero.txt
 ```
 
-Delete file and folder:
+Borrar fichero y carpeta:
 
 ```
 hdfs dfs -rm -skipTrash /user/your-username/test/fichero.txt
 ```
 
-and 
+y 
 
 ```
 hdfs dfs -rmdir /user/your-username/test
 ```
 
-Create two files:
+Crear dos ficheros:
 
 ```
 echo "HOLA HDFS 1" > f1.txt
@@ -283,7 +239,7 @@ echo "HOLA HDFS 1" > f1.txt
 echo "HOLA HDFS 2" > f2.txt
 ```
 
-Store in HDFS:
+Almacenar en HDFS:
 
 ```
 hdfs dfs -put f1.txt /user/your-username/.
@@ -293,45 +249,47 @@ hdfs dfs -put f1.txt /user/your-username/.
 hdfs dfs -put f2.txt /user/your-username/.
 ```
 
-Concatenate both files:
+Concatenarlos:
 
 ```
 hdfs dfs -getmerge /user/your-username/ merged.txt
 ```
 
-## Exercises
+## Ejercicios
 
-- Create 5 files in your local account with the following names:
+- Crea 5 archivos en tu espacio local:
   - part1.dat, part2.dat, part3.dat, part4.dat, part5.dat
-- Copy files to HDFS
-- Create the following HDFS folder structure:
+- Cópialos a HDFS
+- Crea la siguiente estructura de carpetas:
   - /test/p1/
   - /train/p1/
   - /train/p2/
-- Copy part1 in /test/p1/ and part2 in /train/p2/ 
-- Move part3 and part4 to /train/p1/
-- Finally, merge folder /train/p2 and store as data_merged.txt
+- Copia part1 en /test/p1/ y part2 en /train/p2/ 
+- Mueve part3 y part4 a /train/p1/
+- Finalmente, fusiona folder /train/p2 y alamacénalo como data_merged.txt
 
 
-## References:
+## Referencias:
 
 - http://www.glennklockwood.com/data-intensive/hadoop/overview.html
 
 
-# Working with Hadoop Map-Reduce
+# Trabajando con Hadoop Map-Reduce
 
-The provided examples are written in Java code for Hadoop version: 3.2.1. For [examples in Python, go to these references](#word-count-example-for-hadoop-in-python)
+Este es ejemplo es para Hadoop con Java: 3.2.1. Para ejemplos con python [consulta este enlace
+(#word-count-example-for-hadoop-in-python)
 
-## Structure of Map-Reduce code
+## Estructura del código
 
-The main structure is that there is a mapper and reducer, which we will introduce in the following.
+La estructura principal consiste en un mapeador y un reductor, que presentaremos a continuación.
 
 ### Mapper
 
-Maps input key/value pairs to a set of intermediate key/value pairs.
-Maps are the individual tasks which transform input records into intermediate records. The transformed intermediate records need not be of the same type as the input records. A given input pair may map to zero or many output pairs.
 
-The Hadoop Map-Reduce framework spawns one map task for each InputSplit generated by the InputFormat for the job. Mapper implementations can access the configuration for the job via the JobContext.getConfiguration().
+Asigna los pares clave/valor de entrada a un conjunto de pares clave/valor intermedios.
+Los Maps son tareas individuales que transforman los registros de entrada en registros intermedios. No es necesario que los registros intermedios transformados sean del mismo tipo que los registros de entrada. Un par de entrada determinado puede asignarse a cero o a muchos pares de salida.
+
+El marco Hadoop Map-Reduce genera una tarea de mapeo por cada InputSplit generado por el InputFormat del trabajo. Las implementaciones de mapeo pueden acceder a la configuración del trabajo a través de JobContext.getConfiguration().
 
 ```
 public class TokenCounterMapper 
@@ -352,15 +310,15 @@ public class TokenCounterMapper
 
 ### Reducer
 
-Reduces a set of intermediate values which share a key to a smaller set of values.
+Reduce un conjunto de valores intermedios que comparten una clave a un conjunto más pequeño de valores.
 
-Reducer has 3 primary phases:
+El reductor tiene tres fases principales:
 
-- Shuffle: The Reducer copies the sorted output from each Mapper using HTTP across the network.
-- Sort: The framework merge sorts Reducer inputs by keys (since different Mappers may have output the same key). The shuffle and sort phases occur simultaneously i.e. while outputs are being fetched they are merged. A SecondarySort to achieve a secondary sort on the values returned by the value iterator, the application should extend the key with the secondary key and define a grouping comparator. The keys will be sorted using the entire key, but will be grouped using the grouping comparator to decide which keys and values are sent in the same call to reduce. The grouping comparator is specified via Job.setGroupingComparatorClass(Class). The sort order is controlled by Job.setSortComparatorClass(Class). 
-- Reduce: In this phase the reduce(Object, Iterable, org.apache.hadoop.mapreduce.Reducer.Context) method is called for each <key, (collection of values)> in the sorted inputs.
+- Shuffle: el reductor copia la salida ordenada de cada mapeador mediante HTTP a través de la red.
+- Sort: el marco realiza una ordenación por fusión de las entradas del Reducer por claves (ya que diferentes Mappers pueden haber generado la misma clave). Las fases de shuffle y sort se producen simultáneamente, es decir, mientras se recogen las salidas, estas se fusionan. Para realizar una ordenación secundaria de los valores devueltos por el iterador de valores, la aplicación debe ampliar la clave con la clave secundaria y definir un comparador de agrupación. Las claves se ordenarán utilizando la clave completa, pero se agruparán utilizando el comparador de agrupación para decidir qué claves y valores se envían en la misma llamada a reduce. El comparador de agrupación se especifica mediante Job.setGroupingComparatorClass(Class). El orden de clasificación se controla mediante Job.setSortComparatorClass(Class). 
+- Reduce: En esta fase se invoca el método reduce(Object, Iterable, org.apache.hadoop.mapreduce.Reducer.Context) para cada <clave, (colección de valores)> de las entradas ordenadas.
 
-The output of the reduce task is typically written to a RecordWriter via TaskInputOutputContext.write(Object, Object).
+La salida de la tarea de reducción se escribe normalmente en un RecordWriter mediante TaskInputOutputContext.write(Object, Object).
 
 ```
 public class IntSumReducer<Key> extends Reducer<Key,IntWritable,
@@ -382,7 +340,7 @@ public class IntSumReducer<Key> extends Reducer<Key,IntWritable,
 
 ### Main
 
-Main function considering Map and Reduce objects and additional data for the job.
+La función Main
 
 ```
 ...
@@ -400,7 +358,7 @@ Main function considering Map and Reduce objects and additional data for the job
 ...
 ```
 
-## Word Count example
+## Ejemplo de recuento de palabras (Word Count)
 
 Full example of Word Count for Hadoop 3.2.1. Copy the code and save it to your local path as `WordCount.java`.
 
@@ -471,54 +429,54 @@ public class WordCount {
 ```
 
 
-## Running Hadoop applications
+## Ejecución de aplicaciones Hadoop
 
 
-In your home folder, first, create the `wordcount_classes` folder:
+En tu carpeta, crea la subcarpeta `wordcount_classes`:
 
 ````
 mkdir wordcount_classes
 ````
 
-Compile WordCount Application (from source code `WordCount.java`):
+Compila la aplicación WordCount (a partir del código `WordCount.java`):
 
 ```
 javac -classpath `yarn classpath` -d wordcount_classes WordCount.java
 ```
 
-Then, (*pay attention as there is a space between / . *) 
+Y después, (*atención al espacio entre / . *) 
 ```
 jar -cvf WordCount.jar -C wordcount_classes / .
 ```
 
-Finally, the execution template is: 
+Finalmente, la ejecución se hace así:
 
 ```
 hadoop jar <Application> <MainClassName> <Input in HDFS> <Output in HDFS>
 ```
 
-**Examples of execution**
+**Ejemplos de execución**
 
-*Pay attention: Each run requires a new, different, output folder. The output folder will be created on the fly, as the command is called. *
+*Atención: Cada ejecución requiere una carpeta nueva, independient. La carpeta de salida se crea sobre la marcha. *
 
-With a file Oddyssey.txt in /tmp (HDFS):
-
-```
-hadoop jar WordCount.jar WordCount /tmp/odyssey.txt /user/CCSA2223/<yourID>/<folder>/
-```
-
-With a text file in your HDFS folder:
+Sobre el fichero quijote.txt in /tmp (HDFS):
 
 ```
-hadoop jar WordCount.jar WordCount /user/CCSA2223/<yourID>/<yourFile>  /user/CCSA2223/<yourID>/<folder>/
+hadoop jar WordCount.jar WordCount /tmp/quijote.txt /user/CCSA/<folder>/
+```
+
+Con un fichero de texto en tu carpeta:
+
+```
+hadoop jar WordCount.jar WordCount /user/CCSA/<yourFile>  /user/CCSA/<folder>/
 ```
 
 
 
 
-## Results 
+## Resultados 
 
-Check output folder with:
+Comprueba la carpeta de salida:
 
 ```
 hdfs dfs -ls /user/your-username/<folder>
@@ -532,7 +490,7 @@ Found 2 items
 -rw-r--r--   2 root mapred       6713 2019-05-13 17:23 /user/.../part-r-00000
 ```
 
-Show the content of ``part-r-00000``:
+Mostar el contenido de ``part-r-00000``:
 
 ```
 hdfs dfs -cat /user/your-username/<folder>/part-r-00000
@@ -540,127 +498,10 @@ hdfs dfs -cat /user/your-username/<folder>/part-r-00000
 
 
 
-## Calculate MIN of a row in Hadoop
 
-Mapper:
+## Recuento de palabras en python:
 
-
-```
-public class MinMapper extends MapReduceBase implements Mapper<LongWritable, Text, Text, DoubleWritable> {
-
-
-        private static final int MISSING = 9999;
-        
-        // Numero de la Columna del Dataset de donde vamos a buscar el valor mínimo
-        public static int col=5;
-
-		public void map(LongWritable key, Text value, OutputCollector<Text, DoubleWritable> output, Reporter reporter) throws IOException {
-                
-                // Como el fichero de datos cada columna está separada por el caracter , (coma)
-				// Usamos el caracter , (coma) para dividir cada línea del fichero en el map en las columnas
-                String line = value.toString();
-                String[] parts = line.split(",");
-
-                // Hacemos el collect de la key=1 y el valor de la columna (el valor corresponde con el número de columna
-                // indicado anteriormente)
-                output.collect(new Text("1"), new DoubleWritable(Double.parseDouble(parts[col])));
-        }
-}
-```
-
-
-Reducer:
-
-````
-public class MinReducer extends MapReduceBase implements Reducer<Text, DoubleWritable, Text, DoubleWritable> {
-	
-		// Funcion Reduce:		
-		public void reduce(Text key, Iterator<DoubleWritable> values, OutputCollector<Text, DoubleWritable> output, Reporter reporter) throws IOException {
-
-		// Para extraer el Minimo usamos de valor incial el máximo de JAVA
-		Double minValue = Double.MAX_VALUE;
-		
-		// Leemos cada tupla  y nos quedamos con el menor valor
-		while (values.hasNext()) {
-			minValue = Math.min(minValue, values.next().get());
-		}
-		
-		// Hacemos el collect con la key el valor mínimo encontrado en esta fase de reducción
-		output.collect(key, new DoubleWritable(minValue));
-	}
-}
-````
-
-Main (old version):
-
-```
-  public static void main(String[] args) throws Exception {
-    Configuration conf = new Configuration();
-    Job job = Job.getInstance(conf, "Min");
-    job.setJarByClass(Min.class);
-    job.setMapperClass(MinMapper.class);
-    job.setCombinerClass(MinReducer.class);
-    job.setReducerClass(MinReducer.class);
-    job.setOutputKeyClass(Text.class);
-    job.setOutputValueClass(IntWritable.class);
-    FileInputFormat.addInputPath(job, new Path(args[0]));
-    FileOutputFormat.setOutputPath(job, new Path(args[1]));
-    System.exit(job.waitForCompletion(true) ? 0 : 1);
-  }
-```
-
-## Compile MIN in Hadoop
-
-First, create classes folder:
-
-````
-mkdir min_classes
-````
-
-Compile Min Application (from source code Min.java):
-
-```
-javac -classpath `yarn classpath` -d min_classes Min.java
-```
-
-Then, (*pay attention in part / . is separated*) 
-```
-jar -cvf Min.jar -C min_classes / .
-```
-
-Finally, the execution template is: 
-
-```
-hadoop jar <Application> <MainClassName> <Input in HDFS> <Output in HDFS>
-```
-
-**Examples of execution**
-
-*Pay attention: Each run require different output folder*
-
-With a file from one of these sample datasets already in HDFS:
-
-```
-hadoop jar Min.jar Min /user/CCSA2223/5000_ECBDL14_10tst.data /user/CCSA2223/<yourID>/<folder>/
-```
-
-Check results:
-
-```
-hdfs dfs -ls /user/CCSA2223/<yourID>/<folder>/
-```
-
-Show results:
-
-```
-hdfs dfs -cat /user/CCSA2223/<yourID>/<folder>/part-....
-```
-
-
-
-## Word Count example for Hadoop in Python:
-
-For Python Map-Reduce implementations of the word count example, please check the following references: 
+Para implementaciones en python, consulta: 
 
 - https://www.michael-noll.com/tutorials/writing-an-hadoop-mapreduce-program-in-python/
 - https://glennklockwood.com/data-intensive/hadoop/streaming.html
@@ -669,13 +510,13 @@ For Python Map-Reduce implementations of the word count example, please check th
 
 
 <!--
-cp /tmp/lorem.txt /home/CCSA2223/<userFolder>/lorem.txt
-hdfs dfs -put lorem.txt /user/CCSA2223/<userFolder>/
-hdfs dfs -put /home/<userFolder>/lorem.txt /user/CCSA2223/<userFolder>/
+cp /tmp/lorem.txt /home/CCSA/<userFolder>/lorem.txt
+hdfs dfs -put lorem.txt /user/CCSA/<userFolder>/
+hdfs dfs -put /home/<userFolder>/lorem.txt /user/CCSA/<userFolder>/
 
-hdfs dfs -ls /user/CCSA2223/<userFolder>/lorem.txt
+hdfs dfs -ls /user/CCSA/<userFolder>/lorem.txt
 cat lorem.txt
-hdfs dfs -cat /user/CCSA2223/<userFolder>/lorem.txt
+hdfs dfs -cat /user/CCSA/<userFolder>/lorem.txt
 -->
 
 
