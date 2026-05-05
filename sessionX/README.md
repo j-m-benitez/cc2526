@@ -1,4 +1,4 @@
-# Session 10, 11: Spark y MLlib
+# Session 10: Spark y MLlib
 
 Textos originales de Manuel Parra: manuelparra@decsai.ugr.es y José Manuel Benítez: j.m.benitez@decsai.ugr.es
 
