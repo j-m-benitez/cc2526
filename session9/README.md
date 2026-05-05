@@ -29,7 +29,7 @@ Tabla de contenido:
    * [Compile MIN in Hadoop](#compile-min-in-hadoop)
    * [Word Count example for Hadoop in Python:](#word-count-example-for-hadoop-in-python)
 
-# Introduction to Hadoop
+# Introducción a Hadoop
 
 Hadoop es un marco trabajo de código abierto desarrollado por la Apache Software Foundation que permite el procesamiento distribuido de grandes conjuntos de datos a través de clústeres de ordenadores utilizando modelos de programación sencillos. Está diseñado para ampliarse desde un único servidor hasta miles de máquinas, cada una de las cuales ofrece capacidad de cálculo y almacenamiento local. En esencia, Hadoop está concebido para gestionar enormes cantidades de datos de una manera tolerante a fallos, fiable y rentable, lo que lo hace especialmente adecuado para aplicaciones de big data.
 
