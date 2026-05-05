@@ -8,26 +8,24 @@ Tabla de contenido:
 
 * [Introducción a Hadoop](#introduction-to-hadoop)
 * [Setting up Hadoop and connecting](#setting-up-hadoop-and-connecting)
-   * [Setting up a hadoop test install locally or on our current server with docker](#setting-up-a-hadoop-test-install-locally-or-on-our-current-server-with-docker)
-* [Working with HDFS](#working-with-hdfs)
-   * [Connecting to the HDFS of your cluster](#connecting-to-the-hdfs-of-your-cluster)
-      * [Connecting to the local emulation](#connecting-to-the-local-emulation)
-   * [HDFS basics](#hdfs-basics)
-   * [HDFS storage space](#hdfs-storage-space)
-   * [Usage HDFS](#usage-hdfs)
-   * [Exercises](#exercises)
-   * [References:](#references)
-* [Working with Hadoop Map-Reduce](#working-with-hadoop-map-reduce)
-   * [Structure of Map-Reduce code](#structure-of-map-reduce-code)
+   * [Configuración de Hadoop en local con contenedores](#configuracion-de-hadoop-en-local-con-contenedores)
+* [Trabajando con HDFS](#trabajando-con-hdfs)
+   * [Conexión al cluster HDFS](#conexion-al-cluster-hdfs)
+      * [Conexión al despliegue local](#conexion-al-despliegue-local)
+   * [Mandatos básicos](#mandatos-basicos)
+   * [Espacio de almacenamiento HDFS](#espacio-de-almacenamiento-hdfs)
+   * [Uso de HDFS](#uso-de-hdfs)
+   * [Ejercicios](#ejercicios)
+   * [Referencias](#referencias)
+* [Trabajando con Hadoop Map-Reduce](#trabajando-con-hadoop-map-reduce)
+   * [Estrucutura del código Map-Reduce](#estructura-del-codigo-map-reduce)
       * [Mapper](#mapper)
       * [Reducer](#reducer)
       * [Main](#main)
-   * [Word Count example](#word-count-example)
-   * [Running Hadoop applications](#running-hadoop-applications)
-   * [Results](#results)
-   * [Calculate MIN of a row in Hadoop](#calculate-min-of-a-row-in-hadoop)
-   * [Compile MIN in Hadoop](#compile-min-in-hadoop)
-   * [Word Count example for Hadoop in Python:](#word-count-example-for-hadoop-in-python)
+   * [Ejemplo de la tabla de frecuencias de palabras](#word-count-example)
+   * [Ejecutando aplicaciones Hadoop](#ejecutando-aplicaciones-hadoop)
+   * [Resultados](#resultados)
+   * [Ejemplo de la tabla de frecuencias en Python](#ejemplo-de-la-tabla-de-frecuencias-en-python)
 
 # Introducción a Hadoop
 
@@ -75,7 +73,7 @@ volumes:
 
 Has de editar la sección `ports` para cambiar los puertos 9870 y 9864 por otros del rango que se te ha asignado.
 
-El conjutno se puede ejecutar con (podman):
+El conjunto se puede ejecutar con (podman):
 
 ```bash
 podman-compose up -d
@@ -357,9 +355,9 @@ La función Main
 ...
 ```
 
-## Ejemplo de recuento de palabras (Word Count)
+## Ejemplo de la tabla de frecuencias de palabras (Word Count)
 
-Full example of Word Count for Hadoop 3.2.1. Copy the code and save it to your local path as `WordCount.java`.
+Código para Word Count para Hadoop 3.2.1. Copia el código y almacénalo en un fichero como `WordCount.java`.
 
 ```
 import java.io.IOException;
@@ -454,9 +452,9 @@ Finalmente, la ejecución se hace así:
 hadoop jar <Application> <MainClassName> <Input in HDFS> <Output in HDFS>
 ```
 
-**Ejemplos de execución**
+**Ejemplos de execución
 
-*Atención: Cada ejecución requiere una carpeta nueva, independient. La carpeta de salida se crea sobre la marcha. *
+*Atención: Cada ejecución requiere una carpeta nueva, independiente. La carpeta de salida se crea sobre la marcha. *
 
 Sobre el fichero quijote.txt in /tmp (HDFS):
 
@@ -481,7 +479,7 @@ Comprueba la carpeta de salida:
 hdfs dfs -ls /user/your-username/<folder>
 ```
 
-Return ...:
+Devuelve ...:
 
 ```
 Found 2 items
@@ -496,8 +494,6 @@ hdfs dfs -cat /user/your-username/<folder>/part-r-00000
 ```
 
 
-
-
 ## Recuento de palabras en python:
 
 Para implementaciones en python, consulta: 
@@ -506,17 +502,6 @@ Para implementaciones en python, consulta:
 - https://glennklockwood.com/data-intensive/hadoop/streaming.html
 
 
-
-
-<!--
-cp /tmp/lorem.txt /home/CCSA/<userFolder>/lorem.txt
-hdfs dfs -put lorem.txt /user/CCSA/<userFolder>/
-hdfs dfs -put /home/<userFolder>/lorem.txt /user/CCSA/<userFolder>/
-
-hdfs dfs -ls /user/CCSA/<userFolder>/lorem.txt
-cat lorem.txt
-hdfs dfs -cat /user/CCSA/<userFolder>/lorem.txt
--->
 
 
 
