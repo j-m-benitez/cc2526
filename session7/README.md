@@ -1,7 +1,7 @@
 # Funciones como servicio, Function-as-a-Service (FaaS)
 
 
-## Introducción a Funcón como servicio, Function as a Service 
+## Introducción a Función como servicio, Function-as-a-Service 
 
 
 Como antesala a la presentación de "Funciones como servicio", Function-as-a-Service (FaaS), es interesante ver el recorrido: servidores físicos > máquinas virtuales > contenedores > funciones.
@@ -106,125 +106,125 @@ Estos se conocen como BaaS (Backend as a Service). Y la arquitectura sin servido
 
 
 
-## Platforms
+## Plataformas
 
 ### OpenFaaS
+
+[OpenFaaS](https://www.openfaas.com/)® facilita a los desarrolladores la implementación de funciones y microservicios basados en eventos en Kubernetes sin necesidad de escribir código repetitivo y estándar. Empaqueta tu código o un binario existente en una imagen compatible con OCI para obtener un punto de acceso altamente escalable con autoescalado y métricas.
 
 OpenFaaS&reg; makes it easy for developers to deploy event-driven functions and microservices to Kubernetes without repetitive, boiler-plate coding. Package your code or an existing binary in an OCI-compatible image to get a highly scalable endpoint with auto-scaling and metrics.
 
 
-**Highlights**
+**Puntos destacados**
 
-* Ease of use through UI portal and *one-click* install
-* Write services and functions in any language with [Template Store](https://www.openfaas.com/blog/template-store/) or a Dockerfile
-* Build and ship your code in an OCI-compatible/Docker image
-* Portable: runs on existing hardware or public/private cloud by leveraging [Kubernetes](https://github.com/openfaas/faas-netes)
-* [CLI](http://github.com/openfaas/faas-cli) available with YAML format for templating and defining functions
-* Auto-scales as demand increases [including to zero](https://docs.openfaas.com/architecture/autoscaling/)
-* [Commercially supported distribution by the team behind OpenFaaS](https://openfaas.com/support/)
+* Facilidad de uso gracias al portal de interfaz de usuario y a la instalación *con un solo clic*
+* Escribe servicios y funciones en cualquier lenguaje con [Template Store](https://www.openfaas.com/blog/template-store/) o un Dockerfile
+* Compila y distribuye tu código en una imagen compatible con OCI/Docker
+* Portabilidad: se ejecuta en hardware existente o en la nube pública/privada aprovechando [Kubernetes](https://github.com/openfaas/faas-netes)
+* [CLI](http://github.com/openfaas/faas-cli) disponible con formato YAML para crear plantillas y definir funciones
+* Se autoescala a medida que aumenta la demanda [incluso hasta cero](https://docs.openfaas.com/architecture/autoscaling/)
+* [Distribución con soporte comercial por parte del equipo detrás de OpenFaaS](https://openfaas.com/support/)
+  
+**¿Quieres profundizar en OpenFaaS?**
 
-**Want to dig deeper into OpenFaaS?**
+* Activa los endpoints mediante [HTTP o fuentes de eventos como Apache Kafka y AWS SQS](https://docs.openfaas.com/reference/triggers/)
+* Descarga tareas al [sistema integrado de colas y procesamiento en segundo plano](https://docs.openfaas.com/reference/async/)
+* Empieza rápidamente tu andadura con Kubernetes con [GitOps de OpenFaaS Cloud](https://docs.openfaas.com/openfaas-cloud/intro/)
+* Apuesta por la seguridad o vete a casa [con 5 consejos de seguridad imprescindibles](https://www.openfaas.com/blog/five-security-tips/)
+* Aprende todo lo que necesitas saber para [pasar a producción](https://docs.openfaas.com/architecture/production/)
+* Integra Istio o Linkerd con [tutoriales destacados](https://docs.openfaas.com/tutorials/featured/#service-mesh)
+* Implementa en [Kubernetes u OpenShift](https://docs.openfaas.com/deployment/)
 
-* Trigger endpoints with either [HTTP or events sources such as Apache Kafka and AWS SQS](https://docs.openfaas.com/reference/triggers/)
-* Offload tasks to the built-in [queuing and background processing](https://docs.openfaas.com/reference/async/)
-* Quick-start your Kubernetes journey with [GitOps from OpenFaaS Cloud](https://docs.openfaas.com/openfaas-cloud/intro/)
-* Go secure or go home [with 5 must-know security tips](https://www.openfaas.com/blog/five-security-tips/)
-* Learn everything you need to know to [go to production](https://docs.openfaas.com/architecture/production/)
-* Integrate with Istio or Linkerd with [Featured Tutorials](https://docs.openfaas.com/tutorials/featured/#service-mesh)
-* Deploy to [Kubernetes or OpenShift](https://docs.openfaas.com/deployment/)
+## Descripción general de OpenFaaS (Serverless Functions Made Simple)
 
-## Overview of OpenFaaS (Serverless Functions Made Simple)
+Arquitectura conceptualy pila, [más detalle en la documentación](https://docs.openfaas.com/architecture/stack/)
 
-Conceptual architecture and stack, [more detail available in the docs](https://docs.openfaas.com/architecture/stack/)
-
-This is the so-called PLONK Stack: 
+Lo que se conoce como la pila PLONK: 
 - Prometheus
 - Linux
 - OpenFaaS
 - NATS
 - Kubernetes
-- it also requires a Container Runtime and Conainer Registry such as Docker (but there is no letter in the name for this ;)
+- Y, por supuesto, un ejecutor y registro de contenedores como Docker, (aunque no haya una letra en el nombre para este componente ;)
 
-The following diagram represent the conceptual architecture for OpenFaaS: 
+El siguiente diagrama representa la arquitectura conceptual de OpenFaaS: 
 
 ![PLONK STACK](https://blog.alexellis.io/content/images/2019/05/provider-1.png)
 
+Las funciones principales que ofrece OpenFaaS Gateway son las siguientes:
 
+- Crear, listar, actualizar y eliminar funciones.
+- Escalar réplicas de funciones.
+- Invocar una función.
+- Consultar el estado, las métricas y el estado de escalado de las funciones.
+- Crear, listar y eliminar secretos.
+- Ver los registros de las funciones.
+- Poner en cola solicitudes asíncronas.
 
-The core functionality provided by the OpenFaaS Gateway is to:
+Las tres formas de interactuar con la API REST suelen ser:
 
-- Create, list, update and delete functions.
-- Scale function replicas.
-- Invoke a function.
-- Query the health, metrics, and scaling status of functions. 
-- Create, list and delete secrets.
-- View the logs from functions.
-- Queue-up asynchronous requests.
+- Utilizando la CLI (`faas-cli`).
+- Utilizando la interfaz de usuario integrada.
+- O a través de la API REST directamente desde su aplicación o mediante cURL.
 
-The three ways of interacting with the REST API tend to be:
-
-- Using the CLI (`faas-cli`).
-- Using the built-in UI.
-- Or via the REST API directly from your application or via cURL.
-
-All communication within OpenFaaS happens over HTTP using REST. This simple interface is made powerful when coupled with events and triggers.
+Toda la comunicación dentro de OpenFaaS se realiza a través de HTTP utilizando REST. Esta sencilla interfaz se vuelve muy potente cuando se combina con eventos y disparadores.
 
 ![](https://docs.openfaas.com/images/connector-pattern.png)
 
 
-### OpenFaaS and Kubernetes
+### OpenFaaS y Kubernetes
 
-Our bare essentials for Serverless on Kubernetes are:
+Los elementos básicos para la arquitectura sin servidor en Kubernetes son:
 
-- A container image with function code or an executable inside.
-- A registry to host the container image.
-- A Pod to run the container image.
-- A Service to access the Pod.
+- Una imagen de contenedor que contenga el código de la función o un ejecutable.
+- Un registro para alojar la imagen de contenedor.
+- Un pod para ejecutar la imagen de contenedor.
+- Un servicio para acceder al pod.
 
-Often, projects will add many more components on top of this stack, such as a UI, and API gateway, auto-scaling, APIs, and many more.
+A menudo, los proyectos añaden muchos más componentes a esta pila, como una interfaz de usuario, una puerta de enlace de API, escalado automático, API y muchos otros.
 
+## Instrucciones de instalación de OpenFaaS 
 
-## OpenFaaS Installation instructions (not needed on the UGR server)
+Para instalar OpenFaaS sobre una instalación de Kubernetes, procederemos de la siguiente manera: 
 
-For installing OpenFaaS on top of a Kubernetes installation, we will proceed as follows: 
+- Instala minikube (consulta la [Sesión 4](../session4)).
+- Instala [arkade](https://github.com/alexellis/arkade). 
+- Instala OpenFaaS en Kubernetes utilizando arkade.
 
-- Install minikube (See [Session 4](../session4)).
-- Install [arkade](https://github.com/alexellis/arkade). 
-- Install OpenFaaS on Kubernetes using arkade.
+Es posible que elijas un proceso de instalación diferente para tu sistema. Consulta el sitio web de OpenFaaS para obtener manuales e instrucciones de instalación. 
 
-You might choose a different installation pipeline for your system. Check the OpenFaas website for installation manuals and instructions. 
+En esencia, si tienes minikube en funcionamiento, los siguientes comandos deberían instalar arkade y OpenFaaS:
 
-In essence, if you have minikube working, the following to commands should install arkade and OpenFaaS:
 
 ```
 curl -sLS https://get.arkade.dev | sudo sh
 curl -SLsf https://cli.openfaas.com | sudo sh
 ```
 
-### Installation of Arkade and OpenFaas
+### Instalación de Arkade y OpenFaas
 
-Arkade is an App installer for Kubernetes. It relies on Helm3 and Kubernetes, and eases and speeds up the installation of over 50 apps. 
-We will use arkade to install OpenFaaS. 
+Arkade es un instalador de aplicaciones para Kubernetes. Se basa en Helm3 y Kubernetes, y facilita y agiliza la instalación de más de 50 aplicaciones. 
+Utilizaremos Arkade para instalar OpenFaaS. 
 
-To install and run arkade we first need to run minikube. 
+Para instalar y ejecutar Arkade, primero debemos ejecutar Minikube. 
 
-Check [Session 4](../session4) how to run minikube on the UGR server, usually it can be started just with the following: 
+Consulte la [Sesión 4](../session4) para saber cómo ejecutar Minikube en el servidor de la UGR; normalmente, se puede iniciar simplemente con lo siguiente: 
 ```
 minikube start
 ```
 
-Then, we install openfaas using arkade: 
+A continuación, instalamos openfaas usando arkade: 
 ```
 arkade install openfaas
 ```
 
-If you are on the university server with other users also installing it and you run into an error, you can try to use your own temp directory for installation that may fix it, with:
+Si estás conectado al servidor de la universidad junto con otros usuarios que también lo están instalando y te encuentras con un error, puedes intentar utilizar tu propio directorio temporal para la instalación:
 
 ```
 TMPDIR="$HOME/.local/tmp" arkade install openfaas
 ```
 
-After the installation has completed, you will receive the commands you need to run, to log in and access the OpenFaaS Gateway service in Kubernetes.
+Una vez finalizada la instalación, recibirás los comandos que debes ejecutar para iniciar sesión y acceder al servicio OpenFaaS Gateway en Kubernetes.
 
 ```
 Info for app: openfaas 
@@ -244,17 +244,17 @@ faas-cli store deploy figlet
 faas-cli list
 ```
 
-You can get this message again at any time with ``arkade info openfaas``.
+Puedes volver a obtener este mensaje en cualquier momento con ``arkade info openfaas``.
 
-The `kubectl rollout status` command checks that all the containers in the core OpenFaaS stack have started and are healthy.
+El mandato `kubectl rollout status` comprueba que todos los contenedores de la pila principal de OpenFaaS se hayan iniciado y estén en buen estado.
 
-The `kubectl port-forward` command securely forwards a connection to the OpenFaaS Gateway service within your cluster to your laptop on port 8080. It will remain open for as long as the process is running, so if it appears to be inaccessible later on, just run this command again.
+El mandato `kubectl port-forward` reenvía de forma segura una conexión al servicio OpenFaaS Gateway dentro de tu clúster a tu ordenador portátil en el puerto 8080. Permanecerá abierta mientras el proceso esté en ejecución, por lo que, si más adelante parece inaccesible, solo tienes que volver a ejecutar este mandato.
 
-The `faas-cli login` command and preceding line populate the PASSWORD environment variable. You can use this to get the password to open the UI at any time.
+La orden `faas-cli login` y la línea anterior rellenan la variable de entorno PASSWORD. Puedes utilizarla para obtener la contraseña y abrir la interfaz de usuario en cualquier momento.
 
-We then have `faas-cli store deploy figlet` and `faas-cli list`. The first command deploys an ASCII generator function from the Function Store and the second command lists the deployed functions, you should see `figlet` listed.
+A continuación, tenemos `faas-cli store deploy figlet` y `faas-cli list`. El primer mandato implementa una función generadora de ASCII desde el Function Store y el segundo mandato muestra una lista de las funciones implementadas; deberías ver `figlet` en la lista.
 
-You will also find the PLONK stack components deployed, such as Prometheus and NATS. You can see them in the openfaas Kubernetes namespace:
+También encontrarás los componentes de la pila PLONK implementados, como Prometheus y NATS. Puedes verlos en el espacio de nombres de Kubernetes de openfaas:
 
 ```
 kubectl get deploy --namespace openfaas
@@ -267,7 +267,7 @@ prometheus     1/1     1            1           1m
 queue-worker   1/1     1            1           1m
 ```
 
-**In particular, on the UGR server, you can get things up and running with the following. You need to replace 25146 with one of your assigned ports. The last command will set up and print the admin password for login into the OpenFaaS gateway. Copy this password to use it to log into the UI.**
+**IEn concreto, en el servidor de la UGR, puedes ponerlo todo en marcha con lo siguiente. Debes sustituir 25146 por uno de los puertos que se te hayan asignado. El último comando configurará y mostrará la contraseña de administrador para iniciar sesión en la pasarela de OpenFaaS. Copia esta contraseña para utilizarla al iniciar sesión en la interfaz de usuario.**
 
 ```
 minikube tunnel --bind-address=0.0.0.0 &
@@ -293,36 +293,35 @@ echo -n $PASSWORD | faas-cli login --username admin --password-stdin
 echo -n $PASSWORD
 ```
 
-Now you can open a browser to ``http://<put_server_name_here>:25146/ui/`` and log in using username ``admin`` and the password you just copied. 
+Ahora puedes abrir un navegador y acceder a ``http://<introduce_el_nombre_del_servidor_aquí>:25146/ui/`` e iniciar sesión con el nombre de usuario ``admin`` y la contraseña que acabas de copiar. 
 
 ![](OpenFaaSGateway.png)
 
 
-## Your first OpenFaaS function
+## Tu primera función OpenFaaS
 
-With OpenFaaS you can define functions either via a CLI or via the UI of the OpenFaaS gateway. For creating a new FaaS, you can click on the *Deploy New Function* button on the menu in the left for the UI. Go to the *Custom* tab and copy the data from the screenshot below
-
+Con OpenFaaS puedes definir funciones tanto a través de la CLI como de la interfaz de usuario de la pasarela de OpenFaaS. Para crear una nueva función FaaS, haz clic en el botón *Deploy New Function* del menú de la izquierda de la interfaz de usuario. Ve a la pestaña *Custom* y copia los datos de la captura de pantalla que aparece a continuación
 ![](custom-deploy-ui.png)
 
 Click *deploy*. 
 
-Select the `print-env` function from the left panel and click the `INVOKE` button.  
+Selecciona la función `print-env` en el panel de la izquierda y haz clic en el botón `INVOKE`.  
 
 ![](env-invoke.png)
 
-The top of the UI shows the URL you can use to invoke the function from a browser or using curl: 
+En la parte superior de la interfaz de usuario aparece la URL que puedes utilizar para llamar a la función desde un navegador o mediante curl: 
 
 ```
 curl -sL http://127.0.0.1:8080/function/print-env
 ```
 
-The `Invocation Count` is the global count of invocations read from the built-in Prometheus time-series. **The *Function process* is the actual command being called when the function is invoked (you can change it)**. 
+El «Invocation Count» es el recuento global de invocaciones que se lee de la serie temporal integrada de Prometheus. **El *Function process* es el mandto concreto que se ejecuta cuando se invoca la función (se puede modificar)**. 
 
 
-### Exercise
 
-Create a function called `print-cal` that runs the `cal` command to print a calendar: 
+### Ejercicio
 
+Crea una función llamada `print-cal` que ejecute el comando `cal` para mostrar un calendario: 
 ```
 $ curl -sL http://127.0.0.1:8080/function/print-cal
 Handling connection for 8080
@@ -337,9 +336,9 @@ Su Mo Tu We Th Fr Sa
 ```
 
 
-### Stop the service
+### Detección del servicio
 
-From the arkade help: 
+De la ayuda de arkade: 
 ```
 Apps installed to Kubernetes can rarely be uninstalled in a single command 
 and often leave clusters in an inconsistent state. Kubernetes does not 
@@ -369,50 +368,49 @@ Delete any namespaces it created:
 kubectl delete namespace openfaas openfaas-fn
 ```
 
-This will stop the FaaS service. 
+Esto detendrá el servicio FaaS. 
 
-### The CLI
-The CLI for OpenFaaS (`faas-cli`) is written in Golang and acts as an HTTP client to the OpenFaaS Gateway component.
+### La interfaz de línea de órdenes (CLI)
 
-You can get a complete list of commands with `faas-cli --help`.
+La interfaz de línea de órdenes (CLI) de OpenFaaS (`faas-cli`) está escrita en Golang y actúa como cliente HTTP del componente OpenFaaS Gateway.
 
-Search and deploy pre-made functions from the Function Store or find a function template for your specific language:
+Puedes obtener una lista completa de mandatos con `faas-cli --help`.
+
+Busca e implementa funciones ya creadas en el Function Store o encuentra una plantilla de función para tu lenguaje específico:
 
 - `faas-cli store list`
 - `faas-cli store deploy`
 - `faas-cli template store list`
 - `faas-cli template store pull`
 
-Create, build, and publish a function followed by deploying it to your cluster:
+Crea, compila y publica una función, y a continuación impleméntala en tu clúster:
 
 - `faas-cli new`
 - `faas-cli build`
 - `faas-cli push`
 - `faas-cli deploy`
 
-List, inspect, invoke, and troubleshoot your functions:
+Visualiza, revisa, ejecuta y soluciona problemas en tus funciones:
 
 - `faas-cli list`
 - `faas-cli describe`
 - `faas-cli invoke`
 - `faas-cli logs`
 
-Authenticate to the CLI, and create secrets for your functions:
+Inicia sesión en la CLI y crea claves secretas para tus funciones:
 
 - `faas-cli login`
 - `faas-cli secret`
 
-For each command, you can get more information with `faas-cli COMMAND --help` to see example usage and the various flags that are allowed. You can also find help for some of the commands in the OpenFaaS documentation.
+FPara cada mandato, puedes obtener más información con `faas-cli COMANDO --help` para ver ejemplos de uso y los distintos parámetros permitidos. También puedes encontrar ayuda sobre algunos de los comandos en la documentación de OpenFaaS.
 
-We will continue the CLI explanation with more examples in our second assignment: [Practice 2](../practice2).
+### Ejemplos de código
 
-### Code samples
+Puedes crear nuevas funciones utilizando `faas-cli` y las plantillas integradas, o bien utilizar cualquier binario para Windows o Linux en un contenedor.
 
-You can generate new functions using the `faas-cli` and built-in templates or use any binary for Windows or Linux in a container.
+Existen plantillas oficiales para muchos lenguajes populares y se pueden ampliar fácilmente con archivos Dockerfile. Explora estas opciones con `faas-cli store` y `faas-cli template store`. Estas son algunas de las plantillas de funciones disponibles para diferentes lenguajes de programación (el ID del repositorio se especifica en cada función): 
 
-Official templates exist for many popular languages and are easily extensible with Dockerfiles. Explore these options with `faas-cli store` and `faas-cli template store`. These are some of the available function templates for different programming languages (the repo id is specified in each function): 
-
-* Node.js (`node12`) example:
+* Node.js (`node12`):
 
     ```js
 	"use strict"
@@ -429,7 +427,7 @@ Official templates exist for many popular languages and are easily extensible wi
     ```
     *handler.js*
 
-* Python 3 example:
+* Python 3:
 
     ```python
 	import requests
@@ -440,7 +438,7 @@ Official templates exist for many popular languages and are easily extensible wi
     ```
     *handler.py*
 
-* Golang example (`golang-http`)
+* Golang (`golang-http`)
 
     ```golang
 	package function
@@ -466,7 +464,7 @@ Official templates exist for many popular languages and are easily extensible wi
     ```
 
 
-# References
+# Referencias
 - OpenFaaS official training materials (https://docs.openfaas.com/tutorials/training)
 - EdX Course by the Linux Foundation: Serverless, FaaS with OpenFaaS and Kubernetes: (https://learning.edx.org/course/course-v1:LinuxFoundationX+LFS157x+1T2022)
 
