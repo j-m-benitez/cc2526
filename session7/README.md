@@ -1,47 +1,47 @@
-# Introduction to Function as a Service
+# Funciones como servicio, Function-as-a-Service (FaaS)
 
 
-## Introduction to Function as a Service (FaaS)
-
-Before we dive into Function as a Service (FaaS), let's see what the journey has been before FaaS: 
-Physical Servers > Virtual Machines > Containers > Functions. 
-
-Earlier, Physical Servers were used to run applications. Though they offered good performance, they were meant to support the working of specific applications only. If another application were to run on them, it would affect the workflows of both. The rise of Virtual Machines in 2001 allows enabling application-specific resources from physical machines to VM instances. This decreased the infrastructure concerns related to particular applications on physical servers. Then Docker containers came, which provided a lightweight alternative to virtual machines by encapsulating only the application and its specific dependencies inside a container. 
-
-Functions make the developer's process even more autonomous. 
-Functions are code snippets inside the container. 
-Execute them based on some events. 
-
-For example, a function can be made which creates a database, and on creation, it populates that database with values. Without functions, developers would have to wait for database creation and then manually update the database.
-
-## What is Function as a Service (FaaS)?
-
-Function as a Service is a cloud service execution model and uses functions for the purpose. As stated above, Function is a piece of code of business logic, more particularly, which is event-driven. That means that it gets triggered and performs its part on a launch of a particular event until the task is done. Functions can be of various types such as :
-
-- Function to process a web request
-- Function for any scheduled job
-- A function that executes manually.
-
-Moreover, we can also chain functions, which means a particular function on completion can trigger another function to execute. For example, a function for web requests on completion can trigger any scheduled job function. This way, the process becomes more autonomous.
-
-Summing up, FaaS is a serverless way to execute modular pieces of code. FaaS lets developers write and update a piece of code on the fly, which can then be executed in response to an event, such as a user clicking on an element in a web application. This makes it easy to scale code and is a cost-efficient way to implement microservices.
-
-### What are the advantages of using FaaS?
-
-*Improved developer velocity*: With FaaS, developers can spend more time writing application logic and less time worrying about servers and deployment. This typically means a much faster development turnaround.
-
-*Built-in scalability*: Since FaaS code is inherently scalable, developers do not have to worry about contingencies due to high traffic or heavy use. The serverless provider will handle all of the scaling concerns.
-
-*Cost efficiency*: Unlike traditional cloud providers, serverless FaaS providers do not charge their clients for idle computation time. Because of this, clients only pay for as much computation time as they use, and do not need to waste money over-provisioning cloud resources.
+## Introducción a Funcón como servicio, Function as a Service 
 
 
-### What are the drawbacks of FaaS?
+Como antesala a la presentación de "Funciones como servicio", Function-as-a-Service (FaaS), es interesante ver el recorrido: servidores físicos > máquinas virtuales > contenedores > funciones.
 
-*Less system control*: Having a third party managing part of the infrastructure makes it tough to understand the whole system and adds debugging challenges.
+Anteriormente, se utilizaban servidores físicos para ejecutar aplicaciones. Aunque ofrecían un buen rendimiento, estaban diseñados para soportar únicamente el funcionamiento de aplicaciones específicas. Si se ejecutaba otra aplicación en ellos, esto afectaba a los flujos de trabajo de ambas. El auge de las máquinas virtuales en 2001 permitió transferir recursos específicos de aplicaciones de máquinas físicas a instancias de máquinas virtuales. Esto redujo las preocupaciones relacionadas con la infraestructura de aplicaciones concretas en servidores físicos. Posteriormente llegaron los contenedores Docker, que proporcionaron una alternativa ligera a las máquinas virtuales al encapsular únicamente la aplicación y sus dependencias específicas dentro de un contenedor. 
 
-*More complexity required for testing*: It can be very difficult to incorporate FaaS code into a local testing environment, making thorough testing of an application a more intensive task.
+Las funciones hacen que el proceso del desarrollador sea aún más autónomo. Son fragmentos de código dentro del contenedor. Se ejecutan en función de determinados eventos. 
 
-### List of Function as a Service (FaaS) providers on Public Clouds
+Por ejemplo, se puede crear una función que genere una base de datos y, al crearla, la rellene con valores. Sin funciones, los desarrolladores tendrían que esperar a que se creara la base de datos y, a continuación, actualizarla manualmente.
+
+
+## ¿Qué es Function-as-a-Service (FaaS)?
+
+«Function as a Service» es un modelo de ejecución de servicios en la nube que utiliza funciones para este fin. Como se ha mencionado anteriormente, una función es un fragmento de código de lógica de negocio, más concretamente, que se activa en respuesta a eventos. Esto significa que se activa y realiza su tarea cuando se produce un evento concreto, hasta que la tarea se completa. Las funciones pueden ser de diversos tipos, tales como:
+
+- Función para procesar una solicitud web
+- Función para cualquier tarea programada
+- Función que se ejecuta manualmente.
+
+Además, también podemos encadenar funciones, lo que significa que una función concreta, al completarse, puede activar la ejecución de otra función. Por ejemplo, una función para solicitudes web, al completarse, puede activar cualquier función de tarea programada. De esta forma, el proceso se vuelve más autónomo.
+
+En resumen, FaaS es un caso particular de computación sin servidor (*serverless*) para la ejecución de fragmentos de código modulares. FaaS permite a los desarrolladores escribir y actualizar un fragmento de código sobre la marcha, que luego se puede ejecutar en respuesta a un evento, como el clic de un usuario en un elemento de una aplicación web. Esto facilita la escalabilidad del código y es una forma rentable de implementar microservicios.
+
+
+### ¿Cuáles son las ventajas de usar FaaS?
+
+*Mayor rapidez en el desarrollo*: Con FaaS, los desarrolladores pueden dedicar más tiempo a escribir la lógica de la aplicación y menos a preocuparse por los servidores y la implementación. Esto suele traducirse en un ciclo de desarrollo mucho más rápido.
+
+*Escalabilidad integrada*: Dado que el código FaaS es intrínsecamente escalable, los desarrolladores no tienen que preocuparse por imprevistos debidos a un tráfico elevado o un uso intensivo. El proveedor de servicios sin servidor se encargará de todos los aspectos relacionados con la escalabilidad.
+
+*Eficiencia de costes*: A diferencia de los proveedores de nube tradicionales, los proveedores de FaaS sin servidor no cobran a sus clientes por el tiempo de computación inactivo. Por ello, los clientes solo pagan por el tiempo de computación que utilizan y no tienen que malgastar dinero en un aprovisionamiento excesivo de recursos en la nube.
+
+
+### ¿Cuáles son las deventajas de FaaS?
+
+*Menor control del sistema*: el hecho de que un tercero gestione parte de la infraestructura dificulta la comprensión del sistema en su conjunto y complica la depuración.
+
+*Mayor complejidad en las pruebas*: puede resultar muy difícil integrar el código FaaS en un entorno de pruebas local, lo que convierte las pruebas exhaustivas de una aplicación en una tarea más laboriosa.
+
+### Proveedores de Function-as-a-Service
 
 - Microsoft Azure
 - Amazon Web Services (AWS)
@@ -50,8 +50,8 @@ Summing up, FaaS is a serverless way to execute modular pieces of code. FaaS let
 - Algoritmia
 - ...
 
-### Example
-Below is a sample example of an Azure function snippet. 
+### Ejemplo
+A continuación se muestra un fragmento de una función en Azure:
 
 ```
 Using System.Net; 
@@ -64,40 +64,47 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
  ```
  
 
-## How does Function as a Service Work?
-Anyone who wants to get the benefits of FaaS needs to use a cloud service provider to implement FaaS.
+## ¿Cómo opera Function-as-a-Service?
 
-- In the FaaS model, developers are not concerned with infrastructure and service-related computing, and they are only concerned with writing functions.
-- These functions on getting invoked will cause the cloud provider to bring up the server, and on the successful execution of the Function, the server goes down.
-- These servers get available on demand when the Function invokes and goes down until the Function executes. Thus saving cost for the subscriber of cloud services as well.
+Cualquiera que desee beneficiarse de las ventajas de FaaS debe recurrir a un proveedor de servicios en la nube para implementar FaaS.
+
+- En el modelo FaaS, los desarrolladores no tienen que preocuparse por la infraestructura ni por los aspectos informáticos relacionados con el servicio, sino que se centran únicamente en escribir funciones.
+- Cuando se invocan estas funciones, el proveedor de la nube activa el servidor, y una vez ejecutada con éxito la función, el servidor se apaga.
+- Estos servidores se activan bajo demanda cuando se invoca la función y se apagan una vez que esta se ha ejecutado. De este modo, también se ahorran costes a los suscriptores de los servicios en la nube.
 
 
-## What is the Serverless Architecture of FaaS?
 
-Serverless architecture is a far broader concept than FaaS. Serverless computing offers a number of advantages over traditional cloud-based or server-centric infrastructure. For many developers, serverless architectures offer greater scalability, more flexibility, and quicker time to release, all at a reduced cost. With serverless architectures, developers do not need to worry about purchasing, provisioning, and managing backend servers. However, serverless computing is not a magic bullet for all web application developers.
+## ¿Cuál es la arquitectura sin servidor de FaaS?
+
+La arquitectura sin servidor es un concepto mucho más amplio que el FaaS. La computación sin servidor ofrece una serie de ventajas con respecto a la infraestructura tradicional basada en la nube o centrada en servidores. Para muchos desarrolladores, las arquitecturas sin servidor ofrecen una mayor escalabilidad, más flexibilidad y un tiempo de lanzamiento más rápido, todo ello a un coste reducido. Con las arquitecturas sin servidor, los desarrolladores no tienen que preocuparse por la adquisición, el aprovisionamiento y la gestión de los servidores de backend. Sin embargo, la computación sin servidor no es la solución milagrosa para todos los desarrolladores de aplicaciones web.
 
 ![FaaS](https://cf-assets.www.cloudflare.com/slt3lc6tev37/7nyIgiecrfe9W6TfmJRpNh/dfc5434659e31300d1918d4163dfb263/benefits-of-serverless.svg)
 
-Serverless computing allows developers to purchase backend services on a flexible ‘pay-as-you-go’ basis, meaning that developers only have to pay for the services they use. This is like switching from a cell phone data plan with a monthly fixed limit, to one that only charges for each byte of data that actually gets used.
+La computación sin servidor permite a los desarrolladores adquirir servicios de backend con una flexible modalidad de «pago por uso», lo que significa que solo tienen que pagar por los servicios que utilizan. Es como pasar de un plan de datos de telefonía móvil con un límite fijo mensual a uno en el que solo se cobra por cada byte de datos que se consume realmente.
 
-The term ‘serverless’ is somewhat misleading, as there are still servers providing these backend services, but all of the server space and infrastructure concerns are handled by the vendor. Serverless means that the developers can do their work without having to worry about servers at all.
+El término «sin servidor» es algo engañoso, ya que sigue habiendo servidores que prestan estos servicios de backend, pero todas las cuestiones relacionadas con el espacio del servidor y la infraestructura las gestiona el proveedor. «Sin servidor» significa que los desarrolladores pueden realizar su trabajo sin tener que preocuparse en absoluto por los servidores.
 
-### Is Serverless for you?
 
-Developers who want to decrease their go-to-market time and build lightweight, flexible applications that can be expanded or updated quickly may benefit greatly from serverless computing.
+### ¿Es la computación sin servidor adecuada para tu caso?
 
-Serverless architectures will reduce the cost for applications that see inconsistent usage, with peak periods alternating with times of little to no traffic. For such applications, purchasing a server or a block of servers that are constantly running and always available, even when unused, may be a waste of resources. A serverless setup will respond instantly when needed and will not incur costs when at rest.
+Los desarrolladores que deseen reducir el tiempo de comercialización y creación de aplicaciones ligeras y flexibles que puedan ampliarse o actualizarse rápidamente pueden beneficiarse enormemente de la computación sin servidor.
 
-Also, developers who want to push some or all of their application functions close to end users for reduced latency will require at least a partially serverless architecture, since doing so necessitates moving some processes out of the origin server.
+Las arquitecturas sin servidor reducirán el coste de las aplicaciones con un uso irregular, en las que los periodos de máxima actividad se alternan con momentos de poco o ningún tráfico. Para este tipo de aplicaciones, adquirir un servidor o un conjunto de servidores que estén constantemente en funcionamiento y siempre disponibles, incluso cuando no se utilizan, puede suponer un desperdicio de recursos. Una configuración sin servidor responderá al instante cuando sea necesario y no generará costes cuando esté inactiva.
 
-### Example of services provided by the vendor in a Serverless Architecture
- With a large number of workloads now shifting to the cloud, cloud providers need to provide backend services like:
+Además, los desarrolladores que deseen acercar algunas o todas las funciones de su aplicación a los usuarios finales para reducir la latencia necesitarán, como mínimo, una arquitectura parcialmente sin servidor, ya que ello requiere trasladar algunos procesos fuera del servidor de origen.
 
-- Load balancer configuration
-- Cluster management
-- Operating system to support the workloads, etc
 
-These are known as BaaS (Backend as a service). And serverless architecture comprises FaaS and BaaS. For example, in databases, many BaaS solution providers provide data validation mechanisms so an application can use these at its backend to authenticate with the database. Now FaaS comes into play. Consider the case when a new record is inserted into the database. Using FaaS, a small function can be added inside the application container, triggered when a new record is added inside the database. The serverless architecture makes FaaS more reliable and affordable. It promotes the trend to implement things as services and use API gateways to map HTTP requests with those functions.
+### Ejemplos de servicios suministrados por un proveedor en uan arquitectura sin servidor
+
+Dado que actualmente un gran número de cargas de trabajo se están trasladando a la nube, los proveedores de servicios en la nube deben ofrecer servicios de *backend* como:
+
+- Configuración del equilibrador de carga
+- Gestión de clústeres
+- Sistema operativo para dar soporte a las cargas de trabajo, etc.
+
+Estos se conocen como BaaS (Backend as a Service). Y la arquitectura sin servidor comprende FaaS y BaaS. Por ejemplo, en las bases de datos, muchos proveedores de soluciones BaaS ofrecen mecanismos de validación de datos para que una aplicación pueda utilizarlos en su backend para autenticarse en la base de datos. Aquí es donde entra en juego FaaS. Consideremos el caso en el que se inserta un nuevo registro en la base de datos. Mediante FaaS, se puede añadir una pequeña función dentro del contenedor de la aplicación, que se activa cuando se añade un nuevo registro a la base de datos. La arquitectura sin servidor hace que FaaS sea más fiable y asequible. Fomenta la tendencia a implementar elementos como servicios y a utilizar pasarelas API para asignar solicitudes HTTP a esas funciones.
+
+
 
 ## Platforms
 
