@@ -267,7 +267,7 @@ prometheus     1/1     1            1           1m
 queue-worker   1/1     1            1           1m
 ```
 
-**IEn concreto, en el servidor de la UGR, puedes ponerlo todo en marcha con lo siguiente. Debes sustituir 25146 por uno de los puertos que se te hayan asignado. El último comando configurará y mostrará la contraseña de administrador para iniciar sesión en la pasarela de OpenFaaS. Copia esta contraseña para utilizarla al iniciar sesión en la interfaz de usuario.**
+**En concreto, en el servidor de la UGR, puedes ponerlo todo en marcha con lo siguiente. Debes sustituir 25146 por uno de los puertos que se te hayan asignado. El último comando configurará y mostrará la contraseña de administrador para iniciar sesión en la pasarela de OpenFaaS. Copia esta contraseña para utilizarla al iniciar sesión en la interfaz de usuario.**
 
 ```
 minikube tunnel --bind-address=0.0.0.0 &
