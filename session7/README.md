@@ -201,7 +201,7 @@ curl -sLS https://get.arkade.dev | sudo sh
 curl -SLsf https://cli.openfaas.com | sudo sh
 ```
 
-### Instalación de Arkade y OpenFaas
+### Instalación de Arkade y OpenFaaS
 
 Arkade es un instalador de aplicaciones para Kubernetes. Se basa en Helm3 y Kubernetes, y facilita y agiliza la instalación de más de 50 aplicaciones. 
 Utilizaremos Arkade para instalar OpenFaaS. 
