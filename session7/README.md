@@ -47,7 +47,7 @@ En resumen, FaaS es un caso particular de computación sin servidor (*serverless
 - Amazon Web Services (AWS)
 - Cloud Functions
 - IBM functions
-- Algoritmia
+- Algorithmia
 - ...
 
 ### Ejemplo
@@ -74,29 +74,29 @@ Cualquiera que desee beneficiarse de las ventajas de FaaS debe recurrir a un pro
 
 
 
-## ¿Cuál es la arquitectura sin servidor de FaaS?
+## ¿Cuál es la arquitectura "sin servidor" de FaaS?
 
-La arquitectura sin servidor es un concepto mucho más amplio que el FaaS. La computación sin servidor ofrece una serie de ventajas con respecto a la infraestructura tradicional basada en la nube o centrada en servidores. Para muchos desarrolladores, las arquitecturas sin servidor ofrecen una mayor escalabilidad, más flexibilidad y un tiempo de lanzamiento más rápido, todo ello a un coste reducido. Con las arquitecturas sin servidor, los desarrolladores no tienen que preocuparse por la adquisición, el aprovisionamiento y la gestión de los servidores de backend. Sin embargo, la computación sin servidor no es la solución milagrosa para todos los desarrolladores de aplicaciones web.
+La computación sin servidor es un concepto mucho más amplio que el FaaS. Ofrece una serie de ventajas con respecto a la infraestructura tradicional basada en la nube o centrada en servidores. Para muchos desarrolladores, las arquitecturas sin servidor ofrecen una mayor escalabilidad, más flexibilidad y un tiempo de lanzamiento más rápido, todo ello a un coste reducido. Con las arquitecturas sin servidor, los desarrolladores no tienen que preocuparse por la adquisición, el aprovisionamiento y la gestión de los servidores de backend. Sin embargo, la computación sin servidor no es la solución milagrosa para todos los desarrolladores de aplicaciones web.
 
 ![FaaS](https://cf-assets.www.cloudflare.com/slt3lc6tev37/7nyIgiecrfe9W6TfmJRpNh/dfc5434659e31300d1918d4163dfb263/benefits-of-serverless.svg)
 
 La computación sin servidor permite a los desarrolladores adquirir servicios de backend con una flexible modalidad de «pago por uso», lo que significa que solo tienen que pagar por los servicios que utilizan. Es como pasar de un plan de datos de telefonía móvil con un límite fijo mensual a uno en el que solo se cobra por cada byte de datos que se consume realmente.
 
-El término «sin servidor» es algo engañoso, ya que sigue habiendo servidores que prestan estos servicios de backend, pero todas las cuestiones relacionadas con el espacio del servidor y la infraestructura las gestiona el proveedor. «Sin servidor» significa que los desarrolladores pueden realizar su trabajo sin tener que preocuparse en absoluto por los servidores.
+El término «sin servidor» es algo engañoso, ya que sigue habiendo servidores (y toda la infraestructura asociada, como, servidores operativos, software de sistema, comunicación y almacenamiento) que prestan estos servicios, pero todas las cuestiones de operación y gestión de la infraestructura las gestiona el proveedor. «Sin servidor» significa que los desarrolladores pueden realizar su trabajo sin tener que preocuparse en absoluto por los servidores.
 
 
 ### ¿Es la computación sin servidor adecuada para tu caso?
 
 Los desarrolladores que deseen reducir el tiempo de comercialización y creación de aplicaciones ligeras y flexibles que puedan ampliarse o actualizarse rápidamente pueden beneficiarse enormemente de la computación sin servidor.
 
-Las arquitecturas sin servidor reducirán el coste de las aplicaciones con un uso irregular, en las que los periodos de máxima actividad se alternan con momentos de poco o ningún tráfico. Para este tipo de aplicaciones, adquirir un servidor o un conjunto de servidores que estén constantemente en funcionamiento y siempre disponibles, incluso cuando no se utilizan, puede suponer un desperdicio de recursos. Una configuración sin servidor responderá al instante cuando sea necesario y no generará costes cuando esté inactiva.
+Las arquitecturas sin servidor reducirán el coste de las aplicaciones con un uso irregular, en las que los periodos de máxima actividad se alternan con momentos de poco o ningún tráfico. Para este tipo de aplicaciones, adquirir un servidor o un conjunto de servidores que estén constantemente en funcionamiento y siempre disponibles, incluso cuando no se utilizan, puede suponer un desperdicio de recursos. Una configuración sin servidor responderá en el instante en que sea necesario y no generará costes cuando esté inactiva.
 
 Además, los desarrolladores que deseen acercar algunas o todas las funciones de su aplicación a los usuarios finales para reducir la latencia necesitarán, como mínimo, una arquitectura parcialmente sin servidor, ya que ello requiere trasladar algunos procesos fuera del servidor de origen.
 
 
 ### Ejemplos de servicios suministrados por un proveedor en uan arquitectura sin servidor
 
-Dado que actualmente un gran número de cargas de trabajo se están trasladando a la nube, los proveedores de servicios en la nube deben ofrecer servicios de *backend* como:
+Dado que actualmente un gran número de cargas de trabajo se están trasladando a la nube, los proveedores de servicios en la nube suelen ofrecer servicios de *backend* como:
 
 - Configuración del equilibrador de carga
 - Gestión de clústeres
@@ -111,8 +111,6 @@ Estos se conocen como BaaS (Backend as a Service). Y la arquitectura sin servido
 ### OpenFaaS
 
 [OpenFaaS](https://www.openfaas.com/)® facilita a los desarrolladores la implementación de funciones y microservicios basados en eventos en Kubernetes sin necesidad de escribir código repetitivo y estándar. Empaqueta tu código o un binario existente en una imagen compatible con OCI para obtener un punto de acceso altamente escalable con autoescalado y métricas.
-
-OpenFaaS&reg; makes it easy for developers to deploy event-driven functions and microservices to Kubernetes without repetitive, boiler-plate coding. Package your code or an existing binary in an OCI-compatible image to get a highly scalable endpoint with auto-scaling and metrics.
 
 
 **Puntos destacados**
@@ -137,7 +135,7 @@ OpenFaaS&reg; makes it easy for developers to deploy event-driven functions and 
 
 ## Descripción general de OpenFaaS (Serverless Functions Made Simple)
 
-Arquitectura conceptualy pila, [más detalle en la documentación](https://docs.openfaas.com/architecture/stack/)
+Arquitectura conceptual en forma de pila tecnológica ([más detalle en la documentación](https://docs.openfaas.com/architecture/stack/))
 
 Lo que se conoce como la pila PLONK: 
 - Prometheus
@@ -208,9 +206,18 @@ Utilizaremos Arkade para instalar OpenFaaS.
 
 Para instalar y ejecutar Arkade, primero debemos ejecutar Minikube. 
 
-Consulte la [Sesión 4](../session4) para saber cómo ejecutar Minikube en el servidor de la UGR; normalmente, se puede iniciar simplemente con lo siguiente: 
+Consulte la [Sesión 4](../session4) para saber cómo ejecutar Minikube en el servidor de la UGR. Normalmente, se puede iniciar simplemente con lo siguiente: 
 ```
 minikube start
+```
+Pero puede ser conveniente detallar opciones de configuración (de recursos o gestores de contenedores):
+```
+minikube start \
+    --driver=podman \
+    --cpus=2 \
+    --memory=4096 \
+    --disk-size=20g \
+    --container-runtime=crio
 ```
 
 A continuación, instalamos openfaas usando arkade: 
@@ -218,7 +225,7 @@ A continuación, instalamos openfaas usando arkade:
 arkade install openfaas
 ```
 
-Si estás conectado al servidor de la universidad junto con otros usuarios que también lo están instalando y te encuentras con un error, puedes intentar utilizar tu propio directorio temporal para la instalación:
+Este paquete ya está instalado en el servidr y disponible para todos los usuarios, por tanto, no necesitas hacerlo en ese servidor. Sí habrás de hacerlo si estás en un equipo distinto como, por ejemplo, tu ordenador personal. Si hubiese conflictos en el uso de la instalación global del servidor de UGR, puedes hacer una instalación en tu cuenta personal así:
 
 ```
 TMPDIR="$HOME/.local/tmp" arkade install openfaas
@@ -267,7 +274,7 @@ prometheus     1/1     1            1           1m
 queue-worker   1/1     1            1           1m
 ```
 
-**En concreto, en el servidor de la UGR, puedes ponerlo todo en marcha con lo siguiente. Debes sustituir 25146 por uno de los puertos que se te hayan asignado. El último comando configurará y mostrará la contraseña de administrador para iniciar sesión en la pasarela de OpenFaaS. Copia esta contraseña para utilizarla al iniciar sesión en la interfaz de usuario.**
+**En concreto, en el servidor de la UGR, puedes ponerlo todo en marcha con la siguiente orden. Debes sustituir 25146 por uno de los puertos que se te hayan asignado. El último comando configurará y mostrará la contraseña de administrador para iniciar sesión en la pasarela de OpenFaaS. Copia esta contraseña para utilizarla al iniciar sesión en la interfaz de usuario.**
 
 ```
 minikube tunnel --bind-address=0.0.0.0 &
