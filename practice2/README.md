@@ -1,35 +1,35 @@
 # Práctica 2
 
-Implementing face recognition using Functions-as-a-Service
+Implementar XXX usando Functions-as-a-Service
 
 
-## Objectives of the practice: 
+## Objetivos de la práctica: 
 
-- Install and deploy a tool for container orchestration: Kubernetes.
-- Deploy the functionality of the function catalogue and functions service through OpenFaaS.
-- Deploy different available functions for FaaS for face recognition. 
-- Implement a scalable function that would become a component for biometric identification of users based on face images. 
+- Instalar e implementar una herramienta de orquestación de contenedores: Kubernetes.
+- Implementar la funcionalidad del catálogo de funciones y del servicio de funciones basado en OpenFaaS.
+- Implementar diferentes funciones disponibles para FaaS destinadas a XXX.
+- Implementar una función escalable que sirva de componente para la identificación biométrica de usuarios a partir de imágenes faciales. 
 
-The main idea of the practice is to create one or more functions that allow you to:
+La idea principal de la práctica es crear una o más funciones que permitan:
 
-- Capture/collect an image (e.g. from a URL) as input to the function.
-- The function must detect the faces that appear
-- The function should return the image with the detected faces framed in a rectangle.
-
-
-## Installation requirements (not needed on the UGR server)
-
-For this you will need the following in terms of platforms/tools to install:
-
-- Install kubernetes (e.g. minikube). Detailed instructions available in [Session 4](../session4/)  
-- Install a RAS platform: OpenFaaS on top of Kubernetes. Detailed instructions available in [Session 7](../session7/)
+- Capturar/recoger una imagen (por ejemplo, desde una URL) como entrada a la función.
+- La función debe detectar los rostros que aparecen.
+- La función debe devolver la imagen con los rostros detectados enmarcados en un rectángulo.
 
 
-## How to deploy an available function as a service
+## Software de base (no necesario en el servidor de UGR)
 
-OpenFaaS has a function template store with some functions already available. This store is implemented with a JSON manifest, which is kept in a public repository on GitHub. Pull Requests (PRs) can be sent to the file to extend and update it, and companies can even have their own stores. The Function Store can be accessed via the CLI using the root command `faas-cli store`. From there, you can search for a function with `faas-cli store list` and deploy the one you want with `faas-cli store deploy`.
+Para ello, necesitarás instalar las siguientes plataformas o herramientas:
 
-A full list of the functions avilable can be obtained with: 
+- Instala Kubernetes (por ejemplo, Minikube). Encontrarás instrucciones detalladas en [Sesión 4](../session4/)  
+- Instala una plataforma RAS: OpenFaaS sobre Kubernetes. Encontrarás instrucciones detalladas en [Sesión 7](../session7/)
+  
+## Cómo implementar una función como servicio
+
+OpenFaaS cuenta con un almacén de plantillas de funciones en el que ya hay algunas funciones disponibles. Este almacén se implementa mediante un manifiesto JSON, que se encuentra en un repositorio público de GitHub. Se pueden enviar solicitudes de incorporación de cambios (PR) al archivo para ampliarlo y actualizarlo, y las empresas pueden incluso tener sus propios almacenes. Se puede acceder al almacén de funciones a través de la CLI utilizando el comando raíz `faas-cli store`. Desde allí, puedes buscar una función con `faas-cli store list` e implementar la que desees con `faas-cli store deploy`.
+
+Se puede obtener un listado completo de las funciones disponibles con:
+
 ```
 $ faas-cli store list
 
@@ -64,7 +64,7 @@ openfaas-exif         servernull   Image EXIF Reader
 openfaas-opennsfw     servernull   Open NSFW Model
 identicon             rgee0        Identicon Generator
 ```
-In order to search for some topic, you might use `grep`. For example, for searching for *face recognition* functions: 
+Para buscar algún tema, puedes utilizar `grep`. Por ejemplo, para buscar funciones de *face recognition*:
 
 ```
 $ faas-cli store list | grep face
@@ -73,7 +73,7 @@ face-detect-opencv    alexellis    face-detect with OpenCV
 face-blur             esimov       Face blur by Endre Simo
 ```
 
-We can see there are two functions for face recognition already available in the OpenFaaS Template Store. We can find more information on them with `faas-cli store inspect`: 
+Podemos ver que ya hay dos funciones de reconocimiento facial disponibles en la tienda de plantillas de OpenFaaS. Podemos obtener más información sobre ellas con el comando `faas-cli store inspect`: 
 ```
 $ faas-cli store inspect face-detect-pigo
 Title:       Face Detection with Pigo
@@ -111,9 +111,9 @@ Labels:
 
 
 ```
-In these descriptions we can find the repositories, authors and some brief instructions on how both of these functions work. For example, they both take an URL of an image as input, and return an image file as output with boxes drawn around detected faces. 
+En estas descripciones podemos encontrar los repositorios, los autores y unas breves instrucciones sobre cómo funcionan ambas funciones. Por ejemplo, ambas toman como entrada la URL de una imagen y devuelven como salida un archivo de imagen con recuadros dibujados alrededor de los rostros detectados.
 
-To deploy these functions run: 
+Para implementar estas funciones, ejecuta: 
 ```
 $ faas-cli store deploy face-detect-pigo
 
@@ -126,23 +126,23 @@ Deployed. 202 Accepted.
 URL: http://127.0.0.1:8080/function/face-detect-opencv
 ```
 
-Here you get the URLs of the two functions. You can also see them now in the GUI OpenFaaS portal: `http://127.0.0.1:8080/ui/`. **On the UGR server, replace this with the correct URL and port, as shown in [Session 7](../session7/)**
+Aquí tienes las URL de las dos funciones. También puedes verlas ahora en la interfaz gráfica de usuario del portal de OpenFaaS: `http://127.0.0.1:8080/ui/`. **En el servidor de la UGR, reemplaza esto con el URL y puertos correctos, tal y como se explicó en [Sesión 7](../session7/)**
 
-You can run the functions in the UI by entering an URL for an image in the *Request body* field as shown in the following capture: 
+Puedes ejecutar las funciones en la interfaz de usuario introduciendo la URL de una imagen en el campo *Request body* como se muestra en la siguiente captura:
 
 ![](invoke-face-detect.png)
 
-and clicking on *INVOKE*. You can also run the function from the CLI with curl: 
+y pulsando sobre *INVOKE*. También puedes ejecutar la funcón desde la línea de órdenes con curl:
 
 ```
 curl -d https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCdio_Sf9aON6NjLHo5fXjG1HNZzWCaTsUjQ http://127.0.0.1:8080/function/face-detect-pigo -o test.png
 ```
 
-where: 
-- *-d* is for specifying that this URL is a data input for the second URL (the function)
-- *-o* is for storing the output into a file (called *test.png* in this case) 
+donde: 
+- *-d* es para especificar que este URL son datos de entrada para el segundo URL (the function)
+- *-o* es para almacenar la salida en un fichero (llamado *test.png* en este caso) 
 
-Evaluate both functions: `face-detect-pigo` and `face-detect-opencv` on some test images you can find online such as `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCdio_Sf9aON6NjLHo5fXjG1HNZzWCaTsUjQ` to check if they work properly. 
+Evalúa las dos funciones, `face-detect-pigo` y `face-detect-opencv`, sobre algunas imágenes de prueba que puedes encontrar en línea tales como `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCdio_Sf9aON6NjLHo5fXjG1HNZzWCaTsUjQ` para verificar que funcionan correctamente. 
 
 
 
