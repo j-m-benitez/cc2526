@@ -333,7 +333,7 @@ e) Referencias utilizadas en la realización del trabajo y confección del infor
 ## Entrega del material
 El informe completo, en formado pdf, junto con los ficheros generados, debidamente organizados en una jerarquía de carpetas se empaquetarán en un fichero .zip, que será entregado en actividad correspondiente de Prado, en la página del curso.
 
-Fecha límite de entrega: 23:59:00h de *12 de junio de 2026*.
+Fecha límite de entrega: 23:59:00h de **12 de junio de 2026**.
 
 
 ## Referencias 
