@@ -301,6 +301,16 @@ echo -n $PASSWORD
 ```
 
 Ahora puedes abrir un navegador y acceder a ``http://<introduce_el_nombre_del_servidor_aquí>:25146/ui/`` e iniciar sesión con el nombre de usuario ``admin`` y la contraseña que acabas de copiar. 
+Alternativamente, puede ser cómodo crear un tunel ssh desde tu ordenador hasta el servidor, por ejemplo:
+
+```
+ssh -L 8080:localhost:25146 usuario@ip-del-servidor
+```
+y, luego lanzar un navegador conectándote al puerto local:
+
+```
+http://localhost:8080
+```
 
 ![](OpenFaaSGateway.png)
 
