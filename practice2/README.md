@@ -21,8 +21,8 @@ La idea principal de la práctica es crear una o más funciones que permitan:
 
 Para ello, necesitarás instalar las siguientes plataformas o herramientas:
 
-- Instala Kubernetes (por ejemplo, Minikube). Encontrarás instrucciones detalladas en [Orquestación de contenedores](../session4/)  
-- Instala una plataforma RAS: OpenFaaS sobre Kubernetes. Encontrarás instrucciones detalladas en [Sesión: Funciones como servicio (FaaS)](../session7/)
+- Instalar Kubernetes (por ejemplo, Minikube). Encontrarás instrucciones detalladas en [Orquestación de contenedores](../session4/)  
+- Instalar una plataforma RAS: OpenFaaS sobre Kubernetes. Encontrarás instrucciones detalladas en [Funciones como servicio (FaaS)](../session7/)
   
 ## Cómo implementar una función como servicio
 
