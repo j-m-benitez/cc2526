@@ -309,26 +309,34 @@ cv2.imshow('img', img)
 
 Si te interesa montar una aplicación diferente como servicio con OpenFaaS, envía tu propuesta al profesor para que la apruebe. Una alternativa muy popular en este momento es la segmentación de imágenes como FaaS con el [Segment Anything Model by META](https://github.com/facebookresearch/segment-anything), por ejemplo, pero no dudes en sugerir cualquier otra aplicación útil para tu contexto académico, de investigación o profesional en la que te gustaría trabajar. 
 
-##  Delivery of practice
 
-The delivery of the practice consists of 3 parts:
+## Práctica evaluable
+Como parte de las actividades evaluables para la parte práctica de la asignatura es necesario realizar las tareas un conjunto de tareas y entregar documentación. Se detalla en las subsecciones que siguen.
 
-1. Development and description of the steps to set up the platform for the FaaS functions service in OpenFaas (if you prefer some other existing platform for FaaS, please inform the teacher).
-2. Implementation of the face detection function in the selected language (python, node.js, etc.). Any improvements of the basic face detection function provided should be described and will be taken into account for the evaluation of the practice. 
-3. Steps for the deployment of the implemented function within the selected OpenFaaS platform.
+### Tareas a realizar
 
-All these steps must be documented in the delivery of the practice. For the delivery, all the material must be packaged in a zip file and uploaded to PRADO by the  deadline set. 
+1. Desarrollo y descripción de los pasos para configurar la plataforma del servicio de funciones FaaS en OpenFaas (si prefieres otra plataforma FaaS ya existente, informa al profesor).
+2. Implementación de la función de detección de caras en el lenguaje seleccionado (Python, Node.js, etc.). Cualquier mejora de la función básica de detección de rostros proporcionada deberá describirse y se tendrá en cuenta para la evaluación del trabajo práctico. 
+3. Despliegue de la función implementada dentro de la plataforma OpenFaaS seleccionada.
+4. Realizar un programa de prueba que use la función desplegada.
 
-The zip file must contain the following:
+## Documentación a elaborar y entregar
 
-- Platform deployment material
-- Implemented functions with a detailed description of any improvements you added to the basic code to achieve a better  performance. 
-- Script to deploy the function on OpenFaaS.
+Una vez realizadas als tareas previas, el alumno elaborará un informe con la siguiente estructura y contenidos:
 
-Deadline for submission: 24-April-2025 23:59:00
+a) Portada con nombre del curso, nombre de la práctica, nombre completo del alumno y direción de correo electrónico.
+b) Índice de contenidos del documento.
+c) Una sección por cada una de las tareas indicadas en la sección previa. Cada sección describirá el objetivo e incluirá el listado de los ficheros generados, explicando su contenido. También se incluirán capturas de pantalla mostrando evidencias de la ejecución del proceso. Si has realizado alguna mejora o extensión, explícala.
+d) Conclusiones derivadas del trabajo.
+e) Referencias utilizadas en la realización del trabajo y confección del informe.
+
+## Entrega del material
+El informe completo, en formado pdf, junto con los ficheros generados, debidamente organizados en una jerarquía de carpetas se empaquetarán en un fichero .zip, que será entregado en actividad correspondiente de Prado, en la página del curso.
+
+Fecha límite de entrega: 12 de junio de 2026, 23:59:00
 
 
-## References 
+## Referencias 
 
-- FaaS Examples and Function deployment: https://github.com/openfaas/faas/tree/master/sample-functions
-- OpenCV: https://github.com/opencv/opencv
+- [Ejemplos de FaaS e implementación de funciones](https://github.com/openfaas/faas/tree/master/sample-functions)
+- [OpenCV](https://github.com/opencv/opencv)
