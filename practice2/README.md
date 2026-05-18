@@ -1,13 +1,13 @@
 # Práctica 2
 
-Implementar XXX usando Functions-as-a-Service
+Implementación de un servicio usando Functions-as-a-Service
 
 
 ## Objetivos de la práctica: 
 
 - Instalar e implementar una herramienta de orquestación de contenedores: Kubernetes.
 - Implementar la funcionalidad del catálogo de funciones y del servicio de funciones basado en OpenFaaS.
-- Implementar diferentes funciones disponibles para FaaS destinadas a XXX.
+- Implementar diferentes funciones disponibles para FaaS.
 - Implementar una función escalable que sirva de componente para la identificación biométrica de usuarios a partir de imágenes faciales. 
 
 La idea principal de la práctica es crear una o más funciones que permitan:
@@ -146,22 +146,21 @@ Evalúa las dos funciones, `face-detect-pigo` y `face-detect-opencv`, sobre algu
 
 
 
-## Developing your own functions for FaaS
+## Desarrollar tus propias funciones para FaaS
 
-**For function development you can choose any language that is supported by the functions-as-a-service platform. If you want to use another language for function design, you will need to implement the function from a container.**
+**Para el desarrollo de funciones, puedes elegir cualquier lenguaje compatible con la plataforma de funciones como servicio. Si deseas utilizar otro lenguaje para el diseño de la función, tendrás que implementarla desde un contenedor.**
 
-If you are using node.js, java, or other languages, check the examples [here.](https://github.com/openfaas/faas/tree/master/sample-functions)
+Si utilizas Node.js, Java u otros lenguajes, consulta los [ejemplos.](https://github.com/openfaas/faas/tree/master/sample-functions)
 
-## My first function (template with Python)
+## Mi primera función (plantilla con Python)
 
-Specifically for the OpenFaaS platform example, the function would be created in this way:
+En el caso concreto del ejemplo de la plataforma OpenFaaS, la función se crearía de la siguiente manera:
 
 ```
 $ faas-cli new --lang python3-http facesdetection-python
 ```
 
-This creates the following files for you:
-
+Esto crea los siguientes ficheros:
 ```
 stack.yaml
 facesdetection-python/handler.py
@@ -170,7 +169,7 @@ facesdetection-python/requirements.txt
 facesdetection-python.yml
 ```
 
-The `handler.py` file contains your code that responds to a function invocation:
+El fichero `handler.py` contiene el código que responde a la llamada a una función:
 ```
 def handle(event, context):
     return {
@@ -178,7 +177,7 @@ def handle(event, context):
         "body": "Hello from OpenFaaS!"
     }
 ```
-You can edit the `handler.py` file to the following so that it will print back the request to the user:
+Puedes editar el fichero `handler.py` para que muestre la solicitud al usuario:
 
 ```
 import sys
@@ -210,10 +209,10 @@ def handle(event, context):
 ```
 
 
-The `requirements.txt` file can be used to install pip modules at build time. Pip modules add support for add-ons like MySQL or Numpy (machine learning).
+El fichero `requirements.txt` se puede utilizar para instalar módulos de pip (o con uv) durante la compilación. Los módulos de pip añaden bibliotecas o paquetes con funcionalidad extra como MySQL, Numpy o sk-learn.
 
 
-The `stack.yaml` contains information on how to build and deploy your function:
+`stack.yaml` contiene información sobre cómo compilar y desplegar tu función:
 
 ```
 version: 1.0
@@ -227,52 +226,53 @@ functions:
     image: yourRegistryPrefixWillBeHere/facesdetection-python:latest
 ```
 
+Los campos principales que queremos estudiar aquí son:
 
-The main fields we want to study here are:
+- `gateway`: edita el puerto según sea corresponda (entre los que se te han asignado).
+- `lang`: el nombre de la plantilla con la que se va a compilar.
+- `handler`: la carpeta (no el archivo) donde se encuentra el código del controlador.
+- `image`: el nombre de la imagen de Docker (poman) con el prefijo adecuado para su uso con podman build / push. Hay información adicional sobre esto más abajo. Se recomienda cambiar la etiqueta cada vez que modifiques el código, aunque también puedes dejarla como «latest».
 
-- `gateway`: edit the port accordingly if needed
-- `lang`: The name of the template to build with.
-- `handler`: The folder (not the file) where the handler code is to be found.
-- `image`:  The Docker image name to build with its appropriate prefix for use with docker build / push, more information below. It is recommended that you change the tag on each change of your code, but you can also leave it as latest.
+Puedes ignorar en gran medida los campos `provider`, que son opcionales, pero te permiten codificar de forma fija una dirección de puerta de enlace (gateway) alternativa distinta de la predeterminada.
 
-You can largely ignore the `provider` fields, which are optional, but they do allow you to hard-code an alternative gateway address other than the default.
-
-The community version of OpenFaaS that we use only supports public images, so you'll need to publish your image to a place like dockerhub. For that, you should create an account at `https://hub.docker.com/` then, you replace `yourRegistryPrefixWillBeHere` in `stack.yaml` with your username from dockerhub. You then will need to log in to dockerhub with the following.
+La versión comunitaria de OpenFaaS que utilizamos solo admite imágenes públicas, por lo que tendrás que publicar tu imagen en un sitio como Docker Hub. Para ello, debes crear una cuenta en `https://hub.docker.com/` y, a continuación, sustituir `yourRegistryPrefixWillBeHere` en `stack.yaml` por tu nombre de usuario de Docker Hub. Después, tendrás que iniciar sesión en Docker Hub así:
 
 ```
 docker login --username <your username here> --password <your password here>
 ```
 
+Ahora, hay tres pasos que debes seguir para poner en marcha tu función, tanto inicialmente como para actualizarla. Ejecuta los siguientes mandatos desde la carpeta donde se encuentra el archivo `stack.yaml`:
 
-Now, there are three parts to getting your function up and running both initially and for updating. Run the following from the folder where `stack.yaml` is located:
+- `faas-cli build`: Crea una imagen de contenedor local e instala cualquier otro archivo necesario, como los que figuran en el archivo requirements.txt.
+- `faas-cli push`: transfiere la imagen del contenedor de la función desde nuestra biblioteca local de Docker al registro alojado.
+- `faas-cli deploy`: utilizando la API REST de OpenFaaS, crea una implementación dentro del clúster de Kubernetes y un nuevo pod para gestionar el tráfico.
 
-- `faas-cli build`: Create a local container image, and install any other files needed, like those in the requirements.txt file.
-- `faas-cli push`: Transfer the function’s container image from our local Docker library up to the hosted registry.
-- `faas-cli deploy`: Using the OpenFaaS REST API, create a Deployment inside the Kubernetes cluster and a new Pod to serve traffic.
-
-All of those commands can be combined with the `faas-cli up` command for brevity both initially and for updating.
+Todos estos mandatos se pueden combinar con la orden `faas-cli up` para mayor brevedad, tanto inicialmente como para las actualizaciones.
 
 ```
 $ faas-cli up -f stack.yaml
 ```
 
-Wait a few moments, and then you will see a URL printed `http://127.0.0.1:8080/function/facesdetection-python`
+Espera unos instantes y verás aparecer una URL `http://127.0.0.1:8080/function/facesdetection-python`
 
-That’s it! You can now invoke your function using the UI, curl, your own separate application code, or the faas-cli. The curl command is as follows (you may need to adjust the port):
+¡Ya está! Ahora puedes llamar a tu función mediante la interfaz de usuario, curl, tu propio código de aplicación independiente o la herramienta faas-cli. El mandato curl es el siguiente (es posible que tengas que ajustar el puerto):
+
 
 ```
 $ curl --data "Hello!" http://127.0.0.1:8080/function/facesdetection-python 
-Input: Hello!
+Input: ¡Hola!
 ```
 
-Now you have your first function deployed to OpenFaaS. This function echoes whatever message it gets as input (according to the code in `handler.py`). Now you need to change the code so it actually detects faces. 
+Ya tienes tu primera función implementada en OpenFaaS. Esta función devuelve cualquier mensaje que reciba como entrada (según el código de `handler.py`). Ahora tienes que modificar el código para que realmente detecte caras. 
 
 
-### Face detection function with Python
 
-For the design of the face recognition function you can use pre-trained models that allow you to do the detection without having to create a model from scratch. 
+### Dectección de caras con Python
 
-The pseudocode function could look like the following:
+
+Para el diseño de la función de reconocimiento facial, puedes utilizar modelos preentrenados que te permiten realizar la detección sin tener que crear un modelo desde cero.
+
+El pseudocódigo de la función podría tener el siguiente aspecto:
 
 ```
 def function(input_URL)
@@ -283,7 +283,7 @@ def function(input_URL)
   return imagefaces or save_image(output_URL)  
 ```
 
-The following is an example of code that detects faces using a pretrained classifier called `haarcascade_frontalface_default.xml` from the [OpenCV project](https://github.com/opencv/opencv/tree/4.x/data/haarcascades):
+A continuación se muestra un ejemplo de código que detecta caras utilizando un clasificador preentrenado llamado `haarcascade_frontalface_default.xml` procedente del [proyecto OpenCV](https://github.com/opencv/opencv/tree/4.x/data/haarcascades):
 
 ```
 import cv2
@@ -303,12 +303,11 @@ for (x, y, w, h) in faces:
 cv2.imshow('img', img)
 ```
 
-**You should adapt this code so it takes the URL of an image, performs the face detection on the image and the result is sent to the user or saved in the service so that it can be downloaded or viewed. Any modification to improve this code and the face detection precision will be taken into account for the evaluation of the assignment.** 
+**Debes adaptar este código para que acepte la URL de una imagen, realice la detección de rostros en la imagen y el resultado se envíe al usuario o se guarde en el servicio para que pueda descargarse o visualizarse. Cualquier modificación destinada a mejorar este código y la precisión de la detección de rostros se tendrá en cuenta a la hora de evaluar la práctica.** 
 
-## Alternatives to Face Recognition
+## Alternativas al reconocimiento facial
 
-If you are interested in a different application to be provided as a service with OpenFaaS, please suggest your proposed application to the teacher for his approval. A hot alternative right now is Image Segmentation as FaaS with the [Segment Anything Model by META](https://github.com/facebookresearch/segment-anything), for example, but feel free to suggest any other useful application for your academic/research/professional context you would like to work on. 
-
+Si te interesa montar una aplicación diferente como servicio con OpenFaaS, envía tu propuesta al profesor para que la apruebe. Una alternativa muy popular en este momento es la segmentación de imágenes como FaaS con el [Segment Anything Model by META](https://github.com/facebookresearch/segment-anything), por ejemplo, pero no dudes en sugerir cualquier otra aplicación útil para tu contexto académico, de investigación o profesional en la que te gustaría trabajar. 
 
 ##  Delivery of practice
 
