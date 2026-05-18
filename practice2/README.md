@@ -126,7 +126,7 @@ Deployed. 202 Accepted.
 URL: http://127.0.0.1:8080/function/face-detect-opencv
 ```
 
-Aquí tienes las URL de las dos funciones. También puedes verlas ahora en la interfaz gráfica de usuario del portal de OpenFaaS: `http://127.0.0.1:8080/ui/`. **En el servidor de la UGR, reemplaza esto con el URL y puertos correctos, tal y como se explicó en [Sesión 7](../session7/)**
+Aquí tienes las URL de las dos funciones. También puedes verlas ahora en la interfaz gráfica de usuario del portal de OpenFaaS: `http://127.0.0.1:8080/ui/`. **En el servidor de la UGR, reemplaza esto con el URL y puertos correctos, tal y como se explicó en [Funciones como servicio (FaaS)](../session7/)**
 
 Puedes ejecutar las funciones en la interfaz de usuario introduciendo la URL de una imagen en el campo *Request body* como se muestra en la siguiente captura:
 
