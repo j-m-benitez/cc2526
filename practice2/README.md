@@ -13,7 +13,7 @@ Implementación de un servicio usando Functions-as-a-Service
 La idea principal de la práctica es crear una o más funciones que permitan:
 
 - Capturar/recoger una imagen (por ejemplo, desde una URL) como entrada a la función.
-- La función debe detectar los rostros que aparecen.
+- La función debe detectar las caras que aparecen.
 - La función debe devolver la imagen con los rostros detectados enmarcados en un rectángulo.
 
 
