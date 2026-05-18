@@ -191,7 +191,7 @@ Para instalar OpenFaaS sobre una instalación de Kubernetes, procederemos de la 
 
 Es posible que elijas un proceso de instalación diferente para tu sistema. Consulta el sitio web de OpenFaaS para obtener manuales e instrucciones de instalación. 
 
-En esencia, si tienes minikube en funcionamiento, los siguientes comandos deberían instalar arkade y OpenFaaS:
+En esencia, si tienes minikube en funcionamiento, los siguientes mandatosm deberían instalar arkade y OpenFaaS:
 
 
 ```
@@ -231,7 +231,7 @@ Este paquete ya está instalado en el servidr y disponible para todos los usuari
 TMPDIR="$HOME/.local/tmp" arkade install openfaas
 ```
 
-Una vez finalizada la instalación, recibirás los comandos que debes ejecutar para iniciar sesión y acceder al servicio OpenFaaS Gateway en Kubernetes.
+Una vez finalizada la instalación, recibirás los mandatosm que debes ejecutar para iniciar sesión y acceder al servicio OpenFaaS Gateway en Kubernetes.
 
 ```
 Info for app: openfaas 
@@ -274,7 +274,7 @@ prometheus     1/1     1            1           1m
 queue-worker   1/1     1            1           1m
 ```
 
-**En concreto, en el servidor de la UGR, puedes ponerlo todo en marcha con la siguiente orden. Debes sustituir 25146 por uno de los puertos que se te hayan asignado. El último comando configurará y mostrará la contraseña de administrador para iniciar sesión en la pasarela de OpenFaaS. Copia esta contraseña para utilizarla al iniciar sesión en la interfaz de usuario.**
+**En concreto, en el servidor de la UGR, puedes ponerlo todo en marcha con la siguiente orden. Debes sustituir 25146 por uno de los puertos que se te hayan asignado. El último mandato configurará y mostrará la contraseña de administrador para iniciar sesión en la pasarela de OpenFaaS. Copia esta contraseña para utilizarla al iniciar sesión en la interfaz de usuario.**
 
 ```
 minikube tunnel --bind-address=0.0.0.0 &
@@ -338,7 +338,7 @@ El «Invocation Count» es el recuento global de invocaciones que se lee de la s
 
 ### Ejercicio
 
-Crea una función llamada `print-cal` que ejecute el comando `cal` para mostrar un calendario: 
+Crea una función llamada `print-cal` que ejecute la orden `cal` para mostrar un calendario: 
 ```
 $ curl -sL http://127.0.0.1:8080/function/print-cal
 Handling connection for 8080
@@ -419,7 +419,7 @@ Inicia sesión en la CLI y crea claves secretas para tus funciones:
 - `faas-cli login`
 - `faas-cli secret`
 
-FPara cada mandato, puedes obtener más información con `faas-cli COMANDO --help` para ver ejemplos de uso y los distintos parámetros permitidos. También puedes encontrar ayuda sobre algunos de los comandos en la documentación de OpenFaaS.
+FPara cada mandato, puedes obtener más información con `faas-cli COMANDO --help` para ver ejemplos de uso y los distintos parámetros permitidos. También puedes encontrar ayuda sobre algunos de los mandatos en la documentación de OpenFaaS.
 
 ### Ejemplos de código
 
