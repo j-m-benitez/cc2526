@@ -161,9 +161,9 @@ Las funciones principales que ofrece OpenFaaS Gateway son las siguientes:
 
 Las tres formas de interactuar con la API REST suelen ser:
 
-- Utilizando la CLI (`faas-cli`).
-- Utilizando la interfaz de usuario integrada.
-- O a través de la API REST directamente desde su aplicación o mediante cURL.
+1. Utilizando la CLI (`faas-cli`).
+2. Utilizando la interfaz de usuario integrada.
+3. O a través de la API REST directamente desde su aplicación o mediante cURL.
 
 Toda la comunicación dentro de OpenFaaS se realiza a través de HTTP utilizando REST. Esta sencilla interfaz se vuelve muy potente cuando se combina con eventos y disparadores.
 
