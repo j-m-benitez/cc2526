@@ -74,7 +74,7 @@ Cualquiera que desee beneficiarse de las ventajas de FaaS debe recurrir a un pro
 
 
 
-## ¿Cuál es la arquitectura "sin servidor" de FaaS?
+## ¿Qué es la arquitectura "sin servidor" de FaaS?
 
 La computación sin servidor es un concepto mucho más amplio que el FaaS. Ofrece una serie de ventajas con respecto a la infraestructura tradicional basada en la nube o centrada en servidores. Para muchos desarrolladores, las arquitecturas sin servidor ofrecen una mayor escalabilidad, más flexibilidad y un tiempo de lanzamiento más rápido, todo ello a un coste reducido. Con las arquitecturas sin servidor, los desarrolladores no tienen que preocuparse por la adquisición, el aprovisionamiento y la gestión de los servidores de backend. Sin embargo, la computación sin servidor no es la solución milagrosa para todos los desarrolladores de aplicaciones web.
 
