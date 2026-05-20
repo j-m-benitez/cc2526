@@ -1,5 +1,5 @@
 
-<h1>Sesión 4: Orquestación de contenedores - Docker compose, Singularity compose y Kubernetes</h1>
+<h1>Sesión 4: Orquestación de contenedores: Docker compose, Singularity compose y Kubernetes</h1>
   
   * [Intro to container orchestrators](#Intro-to-containers-orchestrators)
   * [Docker Compose](#Docker-Compose)
