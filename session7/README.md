@@ -191,7 +191,7 @@ Para instalar OpenFaaS sobre una instalación de Kubernetes, procederemos de la 
 
 Es posible que elijas un proceso de instalación diferente para tu sistema. Consulta el sitio web de OpenFaaS para obtener manuales e instrucciones de instalación. 
 
-En esencia, si tienes minikube en funcionamiento, los siguientes mandatosm deberían instalar arkade y OpenFaaS:
+En esencia, si tienes minikube en funcionamiento, los siguientes mandatos deberían instalar arkade y OpenFaaS:
 
 
 ```
