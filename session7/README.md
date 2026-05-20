@@ -201,7 +201,7 @@ curl -SLsf https://cli.openfaas.com | sudo sh
 
 ### Instalación de Arkade y OpenFaaS
 
-Arkade es un instalador de aplicaciones para Kubernetes. Se basa en Helm3 y Kubernetes, y facilita y agiliza la instalación de más de 50 aplicaciones. 
+Arkade es un instalador de aplicaciones para Kubernetes. Se basa en Helm3 y Kubernetes, y facilita y agiliza la instalación de más de 50 aplicaciones. Por tanto, reemplaza al uso tradicional de Helm en otros contextos.
 Utilizaremos Arkade para instalar OpenFaaS. 
 
 Para instalar y ejecutar Arkade, primero debemos ejecutar Minikube. 
@@ -220,18 +220,18 @@ minikube start \
     --container-runtime=crio
 ```
 
-A continuación, instalamos openfaas usando arkade: 
+A continuación, sobre el cluster Kubernetes, instalamos OpenFaaS usando arkade: 
 ```
 arkade install openfaas
 ```
 
-Este paquete ya está instalado en el servidr y disponible para todos los usuarios, por tanto, no necesitas hacerlo en ese servidor. Sí habrás de hacerlo si estás en un equipo distinto como, por ejemplo, tu ordenador personal. Si hubiese conflictos en el uso de la instalación global del servidor de UGR, puedes hacer una instalación en tu cuenta personal así:
+Este paquete ya está instalado en el servidor y disponible para todos los usuarios, por tanto, no necesitas hacerlo en ese servidor. Sí habrás de hacerlo si estás en un equipo distinto como, por ejemplo, tu ordenador personal. Si hubiese conflictos en el uso de la instalación global del servidor de UGR, puedes hacer una instalación en tu cuenta personal así:
 
 ```
 TMPDIR="$HOME/.local/tmp" arkade install openfaas
 ```
 
-Una vez finalizada la instalación, recibirás los mandatosm que debes ejecutar para iniciar sesión y acceder al servicio OpenFaaS Gateway en Kubernetes.
+Una vez finalizada la instalación, recibirás información sobre los mandatos que debes ejecutar para iniciar sesión y acceder al servicio OpenFaaS Gateway en Kubernetes.
 
 ```
 Info for app: openfaas 
@@ -251,17 +251,22 @@ faas-cli store deploy figlet
 faas-cli list
 ```
 
-Puedes volver a obtener este mensaje en cualquier momento con ``arkade info openfaas``.
+Puedes volver a obtener este mensaje en cualquier momento con ``arkade info openfaas``. A continuación, comentamos el objetivo de cada una de las líneas mostradas.
+
+La primera instala el software para administrar y usar la plataforma OpenFaaS desde línea de órdenes: ``faas-cli``. Una vez familiarizados con ella es la vía más rápida para la gestión de la plataforma.
 
 El mandato `kubectl rollout status` comprueba que todos los contenedores de la pila principal de OpenFaaS se hayan iniciado y estén en buen estado.
 
 El mandato `kubectl port-forward` reenvía de forma segura una conexión al servicio OpenFaaS Gateway dentro de tu clúster a tu ordenador portátil en el puerto 8080. Permanecerá abierta mientras el proceso esté en ejecución, por lo que, si más adelante parece inaccesible, solo tienes que volver a ejecutar este mandato.
 
-La orden `faas-cli login` y la línea anterior rellenan la variable de entorno PASSWORD. Puedes utilizarla para obtener la contraseña y abrir la interfaz de usuario en cualquier momento.
+Para administrar la plataforma es necesario aportar credenciales. Son en la forma nombre de usuario y contraseña. El nombre de usuario administrador por defecto es ``admin``. La contraseña se genera con la instalación y se puede obtener y almacenar en una variable de entorno, tal y como se muestra. La variable de entorno usada es PASSWORD. 
 
-A continuación, tenemos `faas-cli store deploy figlet` y `faas-cli list`. El primer mandato implementa una función generadora de ASCII desde el Function Store y el segundo mandato muestra una lista de las funciones implementadas; deberías ver `figlet` en la lista.
+La línea siguiente muestra como usar las credenciales para autenticarse y permitir el acceso a la plataforma OpenFaaS desde la línea de órdenes (``faas-cli login``).
 
-También encontrarás los componentes de la pila PLONK implementados, como Prometheus y NATS. Puedes verlos en el espacio de nombres de Kubernetes de openfaas:
+
+A continuación, tenemos `faas-cli store deploy figlet` y `faas-cli list`. El primer mandato despliega la función ``figlet``. Es una función generadora de mensajes escritos con caracteres ASCII, que se descarga desde el Function Store. El segundo mandato muestra una lista de las funciones implementadas. Deberías ver `figlet` en la lista.
+
+También encontrarás los componentes de la pila PLONK implementados, como Prometheus y NATS. Puedes verlos en el espacio de nombres de Kubernetes de OpenFaaS (``openfaas``):
 
 ```
 kubectl get deploy --namespace openfaas
@@ -274,28 +279,34 @@ prometheus     1/1     1            1           1m
 queue-worker   1/1     1            1           1m
 ```
 
-**En concreto, en el servidor de la UGR, puedes ponerlo todo en marcha con la siguiente orden. Debes sustituir 25146 por uno de los puertos que se te hayan asignado. El último mandato configurará y mostrará la contraseña de administrador para iniciar sesión en la pasarela de OpenFaaS. Copia esta contraseña para utilizarla al iniciar sesión en la interfaz de usuario.**
+Para ilustrar los pasos descritos previamente, mostramos, a continuación, la secuencia de órdenes a ejecutar en el servidor de UGR. En el ejemplo usamos como puerto público para acceder a la plataforma OpenFaas el 25146. Recuerda, reemplazarlo por uno del rango que se te asignó. El último mandato configurará y mostrará la contraseña de administrador para iniciar sesión en la pasarela de OpenFaaS. Copia esta contraseña para utilizarla al iniciar sesión en la interfaz de usuario.**
 
+Habilitando acceso desde el exterior al cluster kubernetes.
 ```
 minikube tunnel --bind-address=0.0.0.0 &
 ```
 
+Asignación del puerto público para acceder a la plataforma OpenFaaS:
 ```
 kubectl port-forward -n openfaas --address 0.0.0.0 svc/gateway 25146:8080 &
 ```
 
+Variable de entorno para acceso local a la plataforma:
 ```
 export OPENFAAS_URL=http://127.0.0.1:25146
 ```
 
+Obtención de la clave de administrador de OpenFaaS
 ```
 PASSWORD=$(kubectl get secret -n openfaas basic-auth -o jsonpath="{.data.basic-auth-password}" | base64 --decode; echo)
 ```
 
+Inicio de sesión con autenticación en la plataforma:
 ```
 echo -n $PASSWORD | faas-cli login --username admin --password-stdin
 ```
 
+Mostrar la clave en la terminal (por ejemplo, para copiarla y usarla en la interfaz web):
 ```
 echo -n $PASSWORD
 ```
@@ -332,7 +343,7 @@ En la parte superior de la interfaz de usuario aparece la URL que puedes utiliza
 curl -sL http://127.0.0.1:8080/function/print-env
 ```
 
-El «Invocation Count» es el recuento global de invocaciones que se lee de la serie temporal integrada de Prometheus. **El *Function process* es el mandto concreto que se ejecuta cuando se invoca la función (se puede modificar)**. 
+El «Invocation Count» es el recuento global de invocaciones que se lee de la serie temporal integrada de Prometheus. **El *Function process* es el mandato concreto que se ejecuta cuando se invoca la función (se puede modificar)**. 
 
 
 
