@@ -303,7 +303,7 @@ for (x, y, w, h) in faces:
 cv2.imshow('img', img)
 ```
 
-**Debes adaptar este código para que acepte la URL de una imagen, realice la detección de rostros en la imagen y el resultado se envíe al usuario o se guarde en el servicio para que pueda descargarse o visualizarse. Cualquier modificación destinada a mejorar este código y la precisión de la detección de rostros se tendrá en cuenta a la hora de evaluar la práctica.** 
+**Nota importante:** Debes adaptar este código para que acepte la URL de una imagen, realice la detección de caras en la imagen y el resultado se envíe al usuario o se guarde en el servicio para que pueda descargarse o visualizarse. Cualquier modificación destinada a mejorar este código y la precisión de la detección de rostros se tendrá en cuenta a la hora de evaluar la práctica. 
 
 ## Alternativas al reconocimiento facial
 
