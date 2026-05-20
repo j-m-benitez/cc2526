@@ -324,9 +324,9 @@ Como parte de las actividades evaluables para la parte práctica de la asignatur
 
 Una vez realizadas las tareas previas, el alumno elaborará un informe con la siguiente estructura y contenidos:
 
-1. Portada con nombre del curso, nombre de la práctica, nombre completo del alumno y direción de correo electrónico.
+1. Portada con nombre del curso, nombre de la práctica, nombre completo del alumno y dirección de correo electrónico.
 2. Índice de contenidos del documento.
-3. Una sección por cada una de las tareas indicadas en la sección previa. Cada sección describirá el objetivo e incluirá el listado de los ficheros generados, explicando su contenido. También se incluirán capturas de pantalla mostrando evidencias de la ejecución del proceso. Si has realizado alguna mejora o extensión, explícala.
+3. Una sección por cada una de las tareas indicadas en la [sección previa](#tareas-a-realizar). Cada sección describirá el objetivo e incluirá el listado de los ficheros generados, explicando su contenido. También se incluirán capturas de pantalla mostrando evidencias de la ejecución del proceso. Si has realizado alguna mejora o extensión, explícala.
 4. Conclusiones derivadas del trabajo.
 5. Referencias utilizadas en la realización del trabajo y confección del informe.
 
